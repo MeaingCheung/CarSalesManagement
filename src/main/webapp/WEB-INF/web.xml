@@ -10,6 +10,10 @@
     </param-value>
 	</context-param>
 
+	<context-param>
+		<param-name>spring.profile.default</param-name>
+		<param-value>development</param-value>
+	</context-param>
 	<!-- SpringMvc -->
 	<servlet>
 		<servlet-name>springmvc</servlet-name>
