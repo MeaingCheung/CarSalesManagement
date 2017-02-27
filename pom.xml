@@ -233,6 +233,7 @@
 				</includes>
 				<filtering>true</filtering>
 			</resource>
+			
 		</resources>
 		<plugins>
 			<!-- 修改maven默认的JRE编译版本，1.8代表JRE编译的版本，根据自己的安装版本选择1.7或1.8 -->

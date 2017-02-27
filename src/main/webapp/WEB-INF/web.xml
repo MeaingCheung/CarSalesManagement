@@ -14,6 +14,9 @@
 		<param-name>spring.profile.default</param-name>
 		<param-value>development</param-value>
 	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 	<!-- SpringMvc -->
 	<servlet>
 		<servlet-name>springmvc</servlet-name>
