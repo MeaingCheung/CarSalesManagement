@@ -24,5 +24,32 @@
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-	<!-- <mvc:annotation-driven></mvc:annotation-driven> -->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="false">
+			<bean
+				class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes" value="text/plain;charset=UTF-8" />
+			</bean>
+			<!-- 配置支持json，解决Controller标有ResponseBody，报错 报错信息： o.s.web.servlet.DispatcherServlet 
+				- Null ModelAndView returned to DispatcherServlet with name 'springmvc': 
+				assuming HandlerAdapter completed request handling -->
+			<bean
+				class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes" value="application/json;charset=UTF-8" />
+				<property name="features">
+					<list>
+						<value>WriteMapNullValue</value>
+						<value>WriteNullListAsEmpty</value>
+						<value>WriteNullStringAsEmpty</value>
+						<value>QuoteFieldNames</value>
+						<value>WriteDateUseDateFormat</value>
+						<value>PrettyFormat</value>
+						<value>WriteEnumUsingToString</value>
+						<value>DisableCircularReferenceDetect</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 </beans>
