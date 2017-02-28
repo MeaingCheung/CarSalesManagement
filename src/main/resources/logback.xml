@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- For assistance related to logback-translator or configuration -->
+<!-- files in general, please contact the logback user mailing list -->
+<!-- at http://www.qos.ch/mailman/listinfo/logback-user -->
+<!-- -->
+<!-- For professional support please see -->
+<!-- http://www.qos.ch/shop/products/professionalSupport -->
+<!-- -->
+<configuration>
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date [%t] %p %c - %m%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="release"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<append>true</append>
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<layout class="ch.qos.logback.classic.PatternLayout">
+				<pattern>%date [%t] %p %c - %m%n</pattern>
+			</layout>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/data/logs/yyz/yyz%d{yyyy-MM-dd}_%i.log
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<property name="THIRD_PARTY_LIB_LEVEL" value="warn" />
+	<property name="YYZ_LEVEL" value="INFO" />
+
+	<!-- 第三方jar -->
+	<logger name="org.mybatis" level="${YYZ_LEVEL}" />
+	<logger name="org.springframework" level="${THIRD_PARTY_LIB_LEVEL}" />
+	<logger name="org.apache.ibatis" level="${THIRD_PARTY_LIB_LEVEL}" />
+	<logger name="org.apache.commons" level="${THIRD_PARTY_LIB_LEVEL}" />
+	<logger name="ch.qos.logback" level="${THIRD_PARTY_LIB_LEVEL}" />
+	<logger name="com.alibaba.druid" level="${THIRD_PARTY_LIB_LEVEL}" />
+
+	<!-- 应用 -->
+	<logger name="com.zhuanqian.release" level="${YYZ_LEVEL}" />
+	<logger name="com.zhuanqian.user" level="${YYZ_LEVEL}" />
+
+	<root level="INFO">
+		<appender-ref ref="release" />
+
+		<appender-ref ref="stdout" />
+	</root>
+</configuration>
