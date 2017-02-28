@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +20,8 @@ import com.yyz.service.UserService;
 public class BaseController {
 
 	@Autowired
-	private UserService userService;
+	private UserService			userService;
+	private final static Logger	logger	= LoggerFactory.getLogger(BaseController.class);
 
 	/**
 	 * 环境测试接口
@@ -41,6 +44,7 @@ public class BaseController {
 	@ResponseBody
 	public Object testJson(HttpServletRequest request) {
 		Map<String, Object> obj = new HashMap<String, Object>();
+		logger.info("打印日志。");
 		obj.put("k1", "v1");
 		obj.put("k2", "v2");
 		obj.put("k3", "v3");
