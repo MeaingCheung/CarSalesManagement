@@ -25,8 +25,10 @@
 	<!-- 用于 SELECT 语句的所有字段 -->
 	<sql id="Base_Column_List">
 		id, groupId, loginId, loginPhone,
-		loginName, loginMail, loginPassword, role, status,
-		createTime, updateTime, deleteTime, userRemark, reserve0, reserve1, reserve2
+		loginName, loginMail,
+		loginPassword, role, status,
+		createTime, updateTime, deleteTime,
+		userRemark, reserve0, reserve1, reserve2
 	</sql>
 
 	<!-- 按主键查询 -->
@@ -45,17 +47,22 @@
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 		insert into user (groupId, loginId, loginPhone,
-		loginName, loginMail, loginPassword,
+		loginName, loginMail,
+		loginPassword,
 		role, status, createTime,
-		updateTime, deleteTime, userRemark,
+		updateTime, deleteTime,
+		userRemark,
 		reserve0, reserve1, reserve2
 		)
-		values (#{groupId,jdbcType=INTEGER}, #{loginId,jdbcType=BIGINT},
+		values
+		(#{groupId,jdbcType=INTEGER}, #{loginId,jdbcType=BIGINT},
 		#{loginPhone,jdbcType=VARCHAR},
-		#{loginName,jdbcType=VARCHAR}, #{loginMail,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR},
+		#{loginName,jdbcType=VARCHAR},
+		#{loginMail,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR},
 		#{role,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
 		#{createTime,jdbcType=BIGINT},
-		#{updateTime,jdbcType=BIGINT}, #{deleteTime,jdbcType=BIGINT}, #{userRemark,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=BIGINT},
+		#{deleteTime,jdbcType=BIGINT}, #{userRemark,jdbcType=VARCHAR},
 		#{reserve0,jdbcType=BIGINT}, #{reserve1,jdbcType=BIGINT},
 		#{reserve2,jdbcType=VARCHAR}
 		)
@@ -231,21 +238,46 @@
 	<!-- -->
 	<update id="updateByPrimaryKey" parameterType="com.yyz.entity.User">
 		update user
-		set groupId = #{groupId,jdbcType=INTEGER},
-		loginId = #{loginId,jdbcType=BIGINT},
-		loginPhone = #{loginPhone,jdbcType=VARCHAR},
-		loginName = #{loginName,jdbcType=VARCHAR},
-		loginMail = #{loginMail,jdbcType=VARCHAR},
-		loginPassword = #{loginPassword,jdbcType=VARCHAR},
+		set
+		groupId = #{groupId,jdbcType=INTEGER},
+		loginId =
+		#{loginId,jdbcType=BIGINT},
+		loginPhone =
+		#{loginPhone,jdbcType=VARCHAR},
+		loginName =
+		#{loginName,jdbcType=VARCHAR},
+		loginMail =
+		#{loginMail,jdbcType=VARCHAR},
+		loginPassword =
+		#{loginPassword,jdbcType=VARCHAR},
 		role = #{role,jdbcType=INTEGER},
 		status = #{status,jdbcType=INTEGER},
-		createTime = #{createTime,jdbcType=BIGINT},
-		updateTime = #{updateTime,jdbcType=BIGINT},
-		deleteTime = #{deleteTime,jdbcType=BIGINT},
-		userRemark = #{userRemark,jdbcType=VARCHAR},
+		createTime =
+		#{createTime,jdbcType=BIGINT},
+		updateTime =
+		#{updateTime,jdbcType=BIGINT},
+		deleteTime =
+		#{deleteTime,jdbcType=BIGINT},
+		userRemark =
+		#{userRemark,jdbcType=VARCHAR},
 		reserve0 = #{reserve0,jdbcType=BIGINT},
 		reserve1 = #{reserve1,jdbcType=BIGINT},
-		reserve2 = #{reserve2,jdbcType=VARCHAR}
+		reserve2 =
+		#{reserve2,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=BIGINT}
 	</update>
+
+	<!-- 根据loginName进行查询 -->
+	<select id="selectByLoginName" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		<where>
+			<if test="loginName != null">
+				and loginName = #{loginName,jdbcType=VARCHAR}
+			</if>
+			and deleteTime is null
+		</where>
+	</select>
 </mapper>

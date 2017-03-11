@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.yyz.enumerate.SessionKey;
 import com.yyz.util.VerificationCodeUtil;
 
 /**
@@ -29,22 +30,22 @@ public class ValidateCodeGenerator {
 	private static final String	TIMES_NEW_ROMAN			= "Times New Roman";
 
 	/** 图片随机数key */
-	public static final String	PICTURE_RANDOM_CODE_KEY	= "RANDOMVALIDATECODEKEY";	// 放到session中的key
+	public static final String	PICTURE_RANDOM_CODE_KEY	= SessionKey.VALIDATE.value();	// 放到session中的key
 
 	/** 随机数 */
 	private Random				random					= new Random();
 
 	/** 宽 */
-	private static final int	width					= 150;						// 图片宽
+	private static final int	width					= 150;							// 图片宽
 
 	/** 高 */
-	private static final int	height					= 35;						// 图片高
+	private static final int	height					= 35;							// 图片高
 
 	/** 干扰线条数 */
-	private static final int	lineSize				= 30;						// 干扰线数量
+	private static final int	lineSize				= 30;							// 干扰线数量
 
 	/** 验证码 */
-	private static final int	stringNum				= 6;						// 随机产生字符数量
+	private static final int	stringNum				= 6;							// 随机产生字符数量
 
 	/**
 	 * 生成随机图片

@@ -1,5 +1,7 @@
 package com.yyz.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.yyz.commons.BaseMapper;
 import com.yyz.entity.User;
 
@@ -33,5 +35,13 @@ public interface UserMapper extends BaseMapper {
 	 * 按主键更新 - 仅更新给定实体类中非null的字段
 	 */
 	int updateByPrimaryKey(User record);
+
+	/**
+	 * 根据登录名进行查找
+	 *
+	 * @param loginName
+	 * @return
+	 */
+	User selectByLoginName(@Param("loginName") String loginName);
 
 }

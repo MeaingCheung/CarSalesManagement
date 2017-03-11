@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -13,29 +14,30 @@
 <meta name="Description"
 	content="B-JUI(Best jQuery UI)前端管理框架。轻松开发，专注您的业务，从B-JUI开始！" />
 <!-- bootstrap - css -->
-<link href="B-JUI/themes/css/bootstrap.css" rel="stylesheet">
+<link href="/B-JUI/themes/css/bootstrap.css" rel="stylesheet">
 <!-- core - css -->
-<link href="B-JUI/themes/css/style.css" rel="stylesheet">
-<link href="B-JUI/themes/blue/core.css" id="bjui-link-theme"
+<link href="/B-JUI/themes/css/style.css" rel="stylesheet">
+<link href="/B-JUI/themes/blue/core.css" id="bjui-link-theme"
 	rel="stylesheet">
-<link href="B-JUI/themes/css/fontsize.css" id="bjui-link-theme"
+<link href="/B-JUI/themes/css/fontsize.css" id="bjui-link-theme"
 	rel="stylesheet">
 <!-- plug - css -->
-<link href="B-JUI/plugins/kindeditor_4.1.11/themes/default/default.css"
+<link href="/B-JUI/plugins/kindeditor_4.1.11/themes/default/default.css"
 	rel="stylesheet">
-<link href="B-JUI/plugins/colorpicker/css/bootstrap-colorpicker.min.css"
+<link
+	href="/B-JUI/plugins/colorpicker/css/bootstrap-colorpicker.min.css"
 	rel="stylesheet">
-<link href="B-JUI/plugins/nice-validator-1.0.7/jquery.validator.css"
+<link href="/B-JUI/plugins/nice-validator-1.0.7/jquery.validator.css"
 	rel="stylesheet">
-<link href="B-JUI/plugins/bootstrapSelect/bootstrap-select.css"
+<link href="/B-JUI/plugins/bootstrapSelect/bootstrap-select.css"
 	rel="stylesheet">
-<link href="B-JUI/plugins/webuploader/webuploader.css" rel="stylesheet">
-<link href="B-JUI/themes/css/FA/css/font-awesome.min.css"
+<link href="/B-JUI/plugins/webuploader/webuploader.css" rel="stylesheet">
+<link href="/B-JUI/themes/css/FA/css/font-awesome.min.css"
 	rel="stylesheet">
 <!-- Favicons -->
 <link rel="apple-touch-icon-precomposed"
-	href="assets/ico/apple-touch-icon-precomposed.png">
-<link rel="shortcut icon" href="assets/ico/favicon.png">
+	href="/assets/ico/apple-touch-icon-precomposed.png">
+<link rel="shortcut icon" href="/assets/ico/favicon.png">
 <!--[if lte IE 7]>
 <link href="B-JUI/themes/css/ie7.css" rel="stylesheet">
 <![endif]-->
@@ -45,44 +47,44 @@
     <script src="B-JUI/other/respond.min.js"></script>
 <![endif]-->
 <!-- jquery -->
-<script src="B-JUI/js/jquery-1.11.3.min.js"></script>
-<script src="B-JUI/js/jquery.cookie.js"></script>
+<script src="/B-JUI/js/jquery-1.11.3.min.js"></script>
+<script src="/B-JUI/js/jquery.cookie.js"></script>
 <!--[if lte IE 9]>
 <script src="B-JUI/other/jquery.iframe-transport.js"></script>
 <![endif]-->
 <!-- B-JUI -->
-<script src="B-JUI/js/bjui-all.min.js"></script>
+<script src="/B-JUI/js/bjui-all.min.js"></script>
 <!-- plugins -->
 <!-- swfupload for kindeditor -->
-<script src="B-JUI/plugins/swfupload/swfupload.js"></script>
+<script src="/B-JUI/plugins/swfupload/swfupload.js"></script>
 <!-- Webuploader -->
-<script src="B-JUI/plugins/webuploader/webuploader.js"></script>
+<script src="/B-JUI/plugins/webuploader/webuploader.js"></script>
 <!-- kindeditor -->
-<script src="B-JUI/plugins/kindeditor_4.1.11/kindeditor-all-min.js"></script>
-<script src="B-JUI/plugins/kindeditor_4.1.11/lang/zh-CN.js"></script>
+<script src="/B-JUI/plugins/kindeditor_4.1.11/kindeditor-all-min.js"></script>
+<script src="/B-JUI/plugins/kindeditor_4.1.11/lang/zh-CN.js"></script>
 <!-- colorpicker -->
-<script src="B-JUI/plugins/colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<script src="/B-JUI/plugins/colorpicker/js/bootstrap-colorpicker.min.js"></script>
 <!-- ztree -->
-<script src="B-JUI/plugins/ztree/jquery.ztree.all-3.5.js"></script>
+<script src="/B-JUI/plugins/ztree/jquery.ztree.all-3.5.js"></script>
 <!-- nice validate -->
-<script src="B-JUI/plugins/nice-validator-1.0.7/jquery.validator.js"></script>
+<script src="/B-JUI/plugins/nice-validator-1.0.7/jquery.validator.js"></script>
 <script
-	src="B-JUI/plugins/nice-validator-1.0.7/jquery.validator.themes.js"></script>
+	src="/B-JUI/plugins/nice-validator-1.0.7/jquery.validator.themes.js"></script>
 <!-- bootstrap plugins -->
-<script src="B-JUI/plugins/bootstrap.min.js"></script>
-<script src="B-JUI/plugins/bootstrapSelect/bootstrap-select.min.js"></script>
-<script src="B-JUI/plugins/bootstrapSelect/defaults-zh_CN.min.js"></script>
+<script src="/B-JUI/plugins/bootstrap.min.js"></script>
+<script src="/B-JUI/plugins/bootstrapSelect/bootstrap-select.min.js"></script>
+<script src="/B-JUI/plugins/bootstrapSelect/defaults-zh_CN.min.js"></script>
 <!-- icheck -->
-<script src="B-JUI/plugins/icheck/icheck.min.js"></script>
+<script src="/B-JUI/plugins/icheck/icheck.min.js"></script>
 <!-- HighCharts -->
-<script src="B-JUI/plugins/highcharts/highcharts.js"></script>
-<script src="B-JUI/plugins/highcharts/highcharts-3d.js"></script>
-<script src="B-JUI/plugins/highcharts/themes/gray.js"></script>
+<script src="/B-JUI/plugins/highcharts/highcharts.js"></script>
+<script src="/B-JUI/plugins/highcharts/highcharts-3d.js"></script>
+<script src="/B-JUI/plugins/highcharts/themes/gray.js"></script>
 <!-- other plugins -->
-<script src="B-JUI/plugins/other/jquery.autosize.js"></script>
-<link href="B-JUI/plugins/uploadify/css/uploadify.css" rel="stylesheet">
-<script src="B-JUI/plugins/uploadify/scripts/jquery.uploadify.min.js"></script>
-<script src="B-JUI/plugins/download/jquery.fileDownload.js"></script>
+<script src="/B-JUI/plugins/other/jquery.autosize.js"></script>
+<link href="/B-JUI/plugins/uploadify/css/uploadify.css" rel="stylesheet">
+<script src="/B-JUI/plugins/uploadify/scripts/jquery.uploadify.min.js"></script>
+<script src="/B-JUI/plugins/download/jquery.fileDownload.js"></script>
 <!-- init -->
 <script type="text/javascript">
 $(function() {
@@ -146,10 +148,10 @@ function bjui_index_exchange() {
 }
 </script>
 <!-- highlight && ZeroClipboard -->
-<link href="assets/prettify.css" rel="stylesheet">
-<script src="assets/prettify.js"></script>
-<link href="assets/ZeroClipboard.css" rel="stylesheet">
-<script src="assets/ZeroClipboard.js"></script>
+<link href="/assets/prettify.css" rel="stylesheet">
+<script src="/assets/prettify.js"></script>
+<link href="/assets/ZeroClipboard.css" rel="stylesheet">
+<script src="/assets/ZeroClipboard.js"></script>
 </head>
 <body>
 	<!--[if lte IE 7]>
@@ -170,12 +172,16 @@ function bjui_index_exchange() {
 				<ul class="nav navbar-nav navbar-right">
 					<li class="datetime"><a><span id="bjui-date">0000/00/00</span>
 							<span id="bjui-clock">00:00:00</span></a></li>
-					<li><a href="#">账号：admin</a></li>
-					<li><a href="#">角色：管理员</a></li>
-					<li><a href="changepassword.html" data-toggle="dialog"
+					<li><a href="#">账号：${user.loginName}</a></li>
+					<li><a href="#">角色：<c:choose>
+								<c:when test="${user.role==0}">管理员</c:when>
+								<c:when test="${user.role==1}">普通用户</c:when>
+								<c:otherwise>未知</c:otherwise>
+							</c:choose></a></li>
+					<li><a href="/changepassword.html" data-toggle="dialog"
 						data-id="sys_user_changepass" data-mask="true" data-width="400"
 						data-height="300">修改密码</a></li>
-					<li><a href="login.jsp" style="font-weight: bold;">&nbsp;<i
+					<li><a href="/login.jsp" style="font-weight: bold;">&nbsp;<i
 							class="fa fa-power-off"></i> 注销登陆
 					</a></li>
 					<li class="dropdown"><a href="#"
@@ -226,16 +232,16 @@ function bjui_index_exchange() {
 					data-target="#bjui-navbar-collapse" aria-expanded="false">
 					<i class="fa fa-angle-double-right"></i>
 				</button>
-				<a class="navbar-brand" href="http://b-jui.com"><img
-					src="../images/logo.png" height="30"></a>
+				<a class="navbar-brand" href="#"><img src="../images/logo.png"
+					height="30"></a>
 			</div>
 			<nav class="collapse navbar-collapse" id="bjui-navbar-collapse">
 				<ul class="nav navbar-nav navbar-right" id="bjui-hnav-navbar">
-					<li class="active"><a href="json/menu-form.json"
+					<li class="active"><a href="/json/menu-form.json"
 						data-toggle="sidenav" data-id-key="targetid">表单相关</a></li>
-					<li><a href="json/menu-base.json" data-toggle="sidenav"
+					<li><a href="/json/menu-base.json" data-toggle="sidenav"
 						data-id-key="targetid">基础组件</a></li>
-					<li><a href="json/menu-datagrid.json" data-toggle="sidenav"
+					<li><a href="/json/menu-datagrid.json" data-toggle="sidenav"
 						data-id-key="targetid">数据表格(Datagrid)</a></li>
 					<li><a href="javascript:;" data-toggle="sidenav"
 						data-tree="true" data-tree-options="{onClick:MainMenuClick}"
@@ -307,6 +313,6 @@ BJUI 更新至 V1.31
 		</div>
 	</div>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<script src="B-JUI/other/ie10-viewport-bug-workaround.js"></script>
+	<script src="/B-JUI/other/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>

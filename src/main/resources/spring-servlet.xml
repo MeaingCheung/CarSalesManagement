@@ -13,17 +13,23 @@
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/jsp/" />
+		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
 		<property name="contentType" value="text/html;charset=UTF-8" />
 	</bean>
-
 	<!-- 指定Bean扫描的包, 标注了 @Controller注解的类成为spring的bean -->
 	<context:component-scan base-package="com.yyz"
 		use-default-filters="false">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
+	<mvc:interceptors>
+		<!-- 登录拦截器 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.yyz.interceptor.LoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="false">
 			<bean

@@ -56,4 +56,13 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	@Override
+	public User findNormalUserByLoginName(String loginName) {
+		try {
+			return userMapper.selectByLoginName(loginName);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
+
 }

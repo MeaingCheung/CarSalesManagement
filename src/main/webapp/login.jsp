@@ -8,9 +8,9 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>汽车销售管理系统 登录</title>
 <meta name="renderer" content="webkit">
-<script src="B-JUI/js/jquery-1.11.3.min.js"></script>
-<script src="B-JUI/js/jquery.cookie.js"></script>
-<link href="B-JUI/themes/css/bootstrap.min.css" rel="stylesheet">
+<script src="/B-JUI/js/jquery-1.11.3.min.js"></script>
+<script src="/B-JUI/js/jquery.cookie.js"></script>
+<link href="/B-JUI/themes/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
 html, body {
 	height: 100%;
@@ -132,8 +132,8 @@ body {
 	}
 	function choose_bg() {
 		var bg = Math.floor(Math.random() * 9 + 1);
-		$('body')
-				.css('background-image', 'url(images/loginbg_0' + bg + '.jpg)');
+		$('body').css('background-image',
+				'url(/images/loginbg_0' + bg + '.jpg)');
 	}
 </script>
 </head>
@@ -149,14 +149,14 @@ body {
 <![endif]-->
 	<div class="container">
 		<div class="main_box">
-			<form action="index.jsp" id="login_form" method="post">
+			<form action="/loginApi" id="login_form" method="post">
 				<input type="hidden" value="" id="j_randomKey" /> <input
 					type="hidden" name="jfinal_token" value="" />
 				<p class="text-center logo">
-					<img src="images/logo.png" height="45">
+					<img src="/images/logo.png" height="45">
 				</p>
 				<div class="login_msg text-center">
-					<font color="red"></font>
+					<font color="red">${errorMsg}</font>
 				</div>
 				<div class="form-group">
 					<div class="input-group">
@@ -170,7 +170,7 @@ body {
 					<div class="input-group">
 						<span class="input-group-addon" id="sizing-addon-password"><span
 							class="glyphicon glyphicon-lock"></span></span> <input type="password"
-							class="form-control" id="j_password" name="passwordhash"
+							class="form-control" id="j_password" name="password"
 							placeholder="登录密码" aria-describedby="sizing-addon-password">
 					</div>
 				</div>
@@ -178,9 +178,10 @@ body {
 					<div class="input-group">
 						<span class="input-group-addon" id="sizing-addon-password"><span
 							class="glyphicon glyphicon-exclamation-sign"></span></span> <input
-							type="text" class="form-control" id="j_captcha" name="captcha"
-							placeholder="验证码" aria-describedby="sizing-addon-password">
-						<span class="input-group-addon code" id="basic-addon-code"><img
+							type="text" class="form-control" id="j_captcha"
+							name="validateCode" placeholder="验证码"
+							aria-describedby="sizing-addon-password"> <span
+							class="input-group-addon code" id="basic-addon-code"><img
 							id="captcha_img" src="/imageServlet" alt="点击更换" title="点击更换"
 							class="m"></span>
 					</div>

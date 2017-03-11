@@ -33,4 +33,12 @@ public interface UserService {
 	 * @return void
 	 */
 	int update(User entity);
+
+	/**
+	 * 根据登录名进行查找
+	 *
+	 * @param loginName
+	 * @return
+	 */
+	User findNormalUserByLoginName(String loginName);
 }
