@@ -20,3 +20,5 @@ CREATE TABLE `user` (
   `reserve2` varchar(255) DEFAULT NULL COMMENT '备用字段',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
+3.初始化数据，增加第一个管理员账户
+INSERT INTO `user` (`id`, `groupId`, `loginId`, `loginName`, `loginPassword`, `role`, `status`, `createTime`, `updateTime`) VALUES ('1', '0', '2660000', 'admin', '21232f297a57a5a743894a0e4a801fc3', '0', '1', '1489202588000', '1489202588000')

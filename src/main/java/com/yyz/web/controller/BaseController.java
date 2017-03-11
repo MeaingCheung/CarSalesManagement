@@ -66,12 +66,12 @@ public class BaseController {
 		Map<String, Object> obj = new HashMap<String, Object>();
 		User user = new User();
 		Long now = System.currentTimeMillis();
-		user.setCreateTime(now.intValue());
-		user.setLoginIdAsOrgUser(0L);
-		user.setLoginPassword("1234");
-		user.setStatus(Short.valueOf("0"));
-		user.setUpdateTime(now.intValue());
-		user.setVisibleInOrg(1);
+		// user.setCreateTime(now.intValue());
+		// user.setLoginIdAsOrgUser(0L);
+		// user.setLoginPassword("1234");
+		// user.setStatus(Short.valueOf("0"));
+		// user.setUpdateTime(now.intValue());
+		// user.setVisibleInOrg(1);
 		try {
 			userService.insert(user);
 		} catch (Exception e) {
