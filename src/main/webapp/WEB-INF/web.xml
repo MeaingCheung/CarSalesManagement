@@ -21,6 +21,10 @@
 	<listener>
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
+	<welcome-file-list>
+		<welcome-file>index</welcome-file>
+	</welcome-file-list>
+	<!-- 配置default servlet处理静态资源 -->
 	<!-- SpringMvc -->
 	<servlet>
 		<servlet-name>springmvc</servlet-name>
@@ -34,6 +38,35 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
+		<url-pattern>/index</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.css</url-pattern>
+		<url-pattern>*.scss</url-pattern>
+		<url-pattern>*.js</url-pattern>
+		<url-pattern>*.gif</url-pattern>
+		<url-pattern>*.jpg</url-pattern>
+		<url-pattern>*.jpeg</url-pattern>
+		<url-pattern>*.bmp</url-pattern>
+		<url-pattern>*.psd</url-pattern>
+		<url-pattern>*.png</url-pattern>
+		<url-pattern>*.woff</url-pattern>
+		<url-pattern>*.ttf</url-pattern>
+		<url-pattern>*.svg</url-pattern>
+		<url-pattern>*.map</url-pattern>
+		<url-pattern>*.less</url-pattern>
+		<url-pattern>*.eot</url-pattern>
+		<url-pattern>*.apk</url-pattern>
+		<url-pattern>*.ico</url-pattern>
+		<url-pattern>*.mp3</url-pattern>
+		<url-pattern>*.html</url-pattern>
+		<url-pattern>*.json</url-pattern>
+		<url-pattern>*.woff2</url-pattern>
+		<url-pattern>*.swf</url-pattern>
 	</servlet-mapping>
 </web-app>

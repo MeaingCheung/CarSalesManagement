@@ -1,14 +1,11 @@
 package com.yyz.entity;
 
-
-
 import java.io.Serializable;
 
 /**
+ * 实体类 - 表：user
  * 
- * @company yyz
- * @author MeaingCheung
- * @version User.java, v 0.1 2017年2月27日 下午9:56:28
+ * @since 2017-03-11 11:36:40
  */
 public class User implements Serializable {
 	/**
@@ -17,9 +14,19 @@ public class User implements Serializable {
 	private Long				id;
 
 	/**
-	 * 机构用户id. 如果用户本身是机构用户，orgUserId与id相同
+	 * 分组ID
 	 */
-	private Long				orgUserId;
+	private Integer				groupId;
+
+	/** 
+	 * 
+	 */
+	private Long				loginId;
+
+	/**
+	 * 登陆电话:只允许手机
+	 */
+	private String				loginPhone;
 
 	/**
 	 * 登陆名称
@@ -32,76 +39,39 @@ public class User implements Serializable {
 	private String				loginMail;
 
 	/**
-	 * 登陆电话:只允许手机
-	 */
-	private String				loginPhone;
-
-	/**
-	 * 登陆名称绑定时间
-	 */
-	private Integer				loginNameBindTime;
-
-	/**
-	 * 登陆邮箱绑定时间
-	 */
-	private Integer				loginMailBindTime;
-
-	/**
-	 * 登陆电话绑定时间
-	 */
-	private Integer				loginPhoneBindTime;
-
-	/**
 	 * 登陆密码
 	 */
 	private String				loginPassword;
 
 	/**
-	 * 可见的登录密码
+	 * 用户角色
 	 */
-	private String				loginPasswordVisible;
-
-	/**
-	 * 最后一次登陆方式:名称,邮箱,手机
-	 */
-	private Byte				loginLastType;
-
-	/**
-	 * 最后一次登陆时间
-	 */
-	private Integer				loginLastTime;
+	private Integer				role;
 
 	/**
 	 * 状态:默认0
 	 */
-	private Short				status;
-
-	/**
-	 * 实名信息编号
-	 */
-	private Long				identityId;
-	/** 用户匹配的费率方案ID */
-	private Long				rateSchemeId;
-
-	/**
-	 * 支付密码
-	 */
-	private String				payPassword;
+	private Integer				status;
 
 	/**
 	 * 创建时间
 	 */
-	private Integer				createTime;
+	private Long				createTime;
 
 	/**
 	 * 更新时间
 	 */
-	private Integer				updateTime;
+	private Long				updateTime;
 
 	/**
 	 * 删除时间
 	 */
-	private Integer				deleteTime;
+	private Long				deleteTime;
+
+	/**
+	 * 用户说明
+	 */
+	private String				userRemark;
 
 	/**
 	 * 备用字段
@@ -114,72 +84,11 @@ public class User implements Serializable {
 	private Long				reserve1;
 
 	/**
-	 * 登录失败次数
-	 */
-	private Byte				loginFailedTimes;
-	/**
 	 * 备用字段
 	 */
 	private String				reserve2;
 
-	/** 用户角色 */
-	private Short				role;
-
-	/** 父ID **/
-	private Long				parentId;
-
-	/** 备注 **/
-	private String				userRemark;
-
 	private static final long	serialVersionUID	= 1L;
-
-	/** token明文 **/
-	private String				openToken;
-
-	/*** 密码密文 **/
-	private String				openPassword;
-
-	/** 机构登陆的编号 **/
-	private Long				loginIdAsOrgUser;
-
-	/*** 登录锁定失效时间 **/
-	private Integer				loginLockExpireTime;
-
-	/** 用户投资评估表ID */
-	private Long				userInvestmentAssessmentInfoId;
-
-	/***
-	 * 管理员分组ID
-	 */
-	private Long				groupId;
-	/***
-	 * 是否支持隐藏
-	 */
-	private Integer				visibleInOrg;
-
-	// public String getPlateName() {
-	// return plateName;
-	// }
-	//
-	// public void setPlateName(String plateName) {
-	// this.plateName = plateName;
-	// }
-	//
-	// public Short getPlateStatus() {
-	// return plateStatus;
-	// }
-	//
-	// public void setPlateStatus(Short plateStatus) {
-	// this.plateStatus = plateStatus;
-	// }
-
-	public Integer getVisibleInOrg() {
-		return visibleInOrg;
-	}
-
-	public void setVisibleInOrg(Integer visibleInOrg) {
-		this.visibleInOrg = visibleInOrg;
-	}
 
 	/**
 	 * 获取自增主键
@@ -188,19 +97,53 @@ public class User implements Serializable {
 		return id;
 	}
 
-	public Long getOrgUserId() {
-		return orgUserId;
-	}
-
-	public void setOrgUserId(Long orgUserId) {
-		this.orgUserId = orgUserId;
-	}
-
 	/**
 	 * 设置自增主键
 	 */
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	/**
+	 * 获取分组ID
+	 */
+	public Integer getGroupId() {
+		return groupId;
+	}
+
+	/**
+	 * 设置分组ID
+	 */
+	public void setGroupId(Integer groupId) {
+		this.groupId = groupId;
+	}
+
+	/**
+	 * 获取
+	 */
+	public Long getLoginId() {
+		return loginId;
+	}
+
+	/**
+	 * 设置
+	 */
+	public void setLoginId(Long loginId) {
+		this.loginId = loginId;
+	}
+
+	/**
+	 * 获取登陆电话:只允许手机
+	 */
+	public String getLoginPhone() {
+		return loginPhone;
+	}
+
+	/**
+	 * 设置登陆电话:只允许手机
+	 */
+	public void setLoginPhone(String loginPhone) {
+		this.loginPhone = loginPhone == null ? null : loginPhone.trim();
 	}
 
 	/**
@@ -232,62 +175,6 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * 获取登陆电话:只允许手机
-	 */
-	public String getLoginPhone() {
-		return loginPhone;
-	}
-
-	/**
-	 * 设置登陆电话:只允许手机
-	 */
-	public void setLoginPhone(String loginPhone) {
-		this.loginPhone = loginPhone == null ? null : loginPhone.trim();
-	}
-
-	/**
-	 * 获取登陆名称绑定时间
-	 */
-	public Integer getLoginNameBindTime() {
-		return loginNameBindTime;
-	}
-
-	/**
-	 * 设置登陆名称绑定时间
-	 */
-	public void setLoginNameBindTime(Integer loginNameBindTime) {
-		this.loginNameBindTime = loginNameBindTime;
-	}
-
-	/**
-	 * 获取登陆邮箱绑定时间
-	 */
-	public Integer getLoginMailBindTime() {
-		return loginMailBindTime;
-	}
-
-	/**
-	 * 设置登陆邮箱绑定时间
-	 */
-	public void setLoginMailBindTime(Integer loginMailBindTime) {
-		this.loginMailBindTime = loginMailBindTime;
-	}
-
-	/**
-	 * 获取登陆电话绑定时间
-	 */
-	public Integer getLoginPhoneBindTime() {
-		return loginPhoneBindTime;
-	}
-
-	/**
-	 * 设置登陆电话绑定时间
-	 */
-	public void setLoginPhoneBindTime(Integer loginPhoneBindTime) {
-		this.loginPhoneBindTime = loginPhoneBindTime;
-	}
-
-	/**
 	 * 获取登陆密码
 	 */
 	public String getLoginPassword() {
@@ -302,115 +189,87 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * 获取最后一次登陆方式:名称,邮箱,手机
+	 * 获取用户角色
 	 */
-	public Byte getLoginLastType() {
-		return loginLastType;
+	public Integer getRole() {
+		return role;
 	}
 
 	/**
-	 * 设置最后一次登陆方式:名称,邮箱,手机
+	 * 设置用户角色
 	 */
-	public void setLoginLastType(Byte loginLastType) {
-		this.loginLastType = loginLastType;
-	}
-
-	/**
-	 * 获取最后一次登陆时间
-	 */
-	public Integer getLoginLastTime() {
-		return loginLastTime;
-	}
-
-	/**
-	 * 设置最后一次登陆时间
-	 */
-	public void setLoginLastTime(Integer loginLastTime) {
-		this.loginLastTime = loginLastTime;
+	public void setRole(Integer role) {
+		this.role = role;
 	}
 
 	/**
 	 * 获取状态:默认0
 	 */
-	public Short getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
 	/**
 	 * 设置状态:默认0
 	 */
-	public void setStatus(Short status) {
+	public void setStatus(Integer status) {
 		this.status = status;
-	}
-
-	/**
-	 * 获取实名信息编号
-	 */
-	public Long getIdentityId() {
-		return identityId;
-	}
-
-	/**
-	 * 设置实名信息编号
-	 */
-	public void setIdentityId(Long identityId) {
-		this.identityId = identityId;
-	}
-
-	/**
-	 * 获取支付密码
-	 */
-	public String getPayPassword() {
-		return payPassword;
-	}
-
-	/**
-	 * 设置支付密码
-	 */
-	public void setPayPassword(String payPassword) {
-		this.payPassword = payPassword == null ? null : payPassword.trim();
 	}
 
 	/**
 	 * 获取创建时间
 	 */
-	public Integer getCreateTime() {
+	public Long getCreateTime() {
 		return createTime;
 	}
 
 	/**
 	 * 设置创建时间
 	 */
-	public void setCreateTime(Integer createTime) {
+	public void setCreateTime(Long createTime) {
 		this.createTime = createTime;
 	}
 
 	/**
 	 * 获取更新时间
 	 */
-	public Integer getUpdateTime() {
+	public Long getUpdateTime() {
 		return updateTime;
 	}
 
 	/**
 	 * 设置更新时间
 	 */
-	public void setUpdateTime(Integer updateTime) {
+	public void setUpdateTime(Long updateTime) {
 		this.updateTime = updateTime;
 	}
 
 	/**
 	 * 获取删除时间
 	 */
-	public Integer getDeleteTime() {
+	public Long getDeleteTime() {
 		return deleteTime;
 	}
 
 	/**
 	 * 设置删除时间
 	 */
-	public void setDeleteTime(Integer deleteTime) {
+	public void setDeleteTime(Long deleteTime) {
 		this.deleteTime = deleteTime;
+	}
+
+	/**
+	 * 获取用户说明
+	 */
+	public String getUserRemark() {
+		return userRemark;
+	}
+
+	/**
+	 * 设置用户说明
+	 */
+	public void setUserRemark(String userRemark) {
+		this.userRemark = userRemark == null ? null : userRemark.trim();
 	}
 
 	/**
@@ -453,101 +312,5 @@ public class User implements Serializable {
 	 */
 	public void setReserve2(String reserve2) {
 		this.reserve2 = reserve2 == null ? null : reserve2.trim();
-	}
-
-	public Byte getLoginFailedTimes() {
-		return loginFailedTimes;
-	}
-
-	public void setLoginFailedTimes(Byte loginFailedTimes) {
-		this.loginFailedTimes = loginFailedTimes;
-	}
-
-	public Short getRole() {
-		return role;
-	}
-
-	public void setRole(Short role) {
-		this.role = role;
-	}
-
-	public Long getParentId() {
-		return parentId;
-	}
-
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
-	}
-
-	public String getLoginPasswordVisible() {
-		return loginPasswordVisible;
-	}
-
-	public void setLoginPasswordVisible(String loginPasswordVisible) {
-		this.loginPasswordVisible = loginPasswordVisible;
-	}
-
-	public String getUserRemark() {
-		return userRemark;
-	}
-
-	public void setUserRemark(String userRemark) {
-		this.userRemark = userRemark;
-	}
-
-	public String getOpenToken() {
-		return openToken;
-	}
-
-	public void setOpenToken(String openToken) {
-		this.openToken = openToken;
-	}
-
-	public String getOpenPassword() {
-		return openPassword;
-	}
-
-	public void setOpenPassword(String openPassword) {
-		this.openPassword = openPassword;
-	}
-
-	public Long getLoginIdAsOrgUser() {
-		return loginIdAsOrgUser;
-	}
-
-	public void setLoginIdAsOrgUser(Long loginIdAsOrgUser) {
-		this.loginIdAsOrgUser = loginIdAsOrgUser;
-	}
-
-	public Integer getLoginLockExpireTime() {
-		return loginLockExpireTime;
-	}
-
-	public void setLoginLockExpireTime(Integer loginLockExpireTime) {
-		this.loginLockExpireTime = loginLockExpireTime;
-	}
-
-	public Long getUserInvestmentAssessmentInfoId() {
-		return userInvestmentAssessmentInfoId;
-	}
-
-	public void setUserInvestmentAssessmentInfoId(Long userInvestmentAssessmentInfoId) {
-		this.userInvestmentAssessmentInfoId = userInvestmentAssessmentInfoId;
-	}
-
-	public Long getGroupId() {
-		return groupId;
-	}
-
-	public void setGroupId(Long groupId) {
-		this.groupId = groupId;
-	}
-
-	public Long getRateSchemeId() {
-		return rateSchemeId;
-	}
-
-	public void setRateSchemeId(Long rateSchemeId) {
-		this.rateSchemeId = rateSchemeId;
 	}
 }

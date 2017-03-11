@@ -1,18 +1,20 @@
-/**
- * Copyright (c) 2015, 杭州转乾网络. All rights reserved.
- */
 package com.yyz.dao;
+
+import org.apache.ibatis.annotations.Param;
 
 import com.yyz.commons.BaseMapper;
 import com.yyz.entity.User;
 
 /**
+ * MyBatis Mapper 接口 - 表：user
  * 
- * @company yyz
- * @author MeaingCheung
- * @version UserMapper.java, v 0.1 2017年2月27日 下午10:01:40
+ * @since 2017-03-11 11:36:40
  */
 public interface UserMapper extends BaseMapper {
+	/**
+	 * 插入 - 仅保存给定实体类中非null的字段
+	 */
+	int insert(User record);
 
 	/**
 	 * 插入 - 仅保存给定实体类中非null的字段
@@ -30,8 +32,16 @@ public interface UserMapper extends BaseMapper {
 	int updateByPrimaryKeySelective(User record);
 
 	/**
-	 * 按主键更新 - 仅更新给定实体类中非null,除loginPhone之外的字段
+	 * 按主键更新 - 仅更新给定实体类中非null的字段
 	 */
-	int updateByPrimaryKeySelectiveExceptLoginPhone(User record);
+	int updateByPrimaryKey(User record);
+
+	/**
+	 * 根据登录名进行查找
+	 *
+	 * @param loginName
+	 * @return
+	 */
+	User selectByLoginName(@Param("loginName") String loginName);
 
 }
