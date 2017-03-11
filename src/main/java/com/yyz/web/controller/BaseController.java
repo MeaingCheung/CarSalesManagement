@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yyz.entity.User;
+import com.yyz.enumerate.SessionKey;
 import com.yyz.service.UserService;
 import com.yyz.util.ValidateCodeGenerator;
 
@@ -98,4 +99,13 @@ public class BaseController {
 			logger.error(e.toString());
 		}
 	}
+
+	// @RequestMapping(value = "/", method = { RequestMethod.POST, RequestMethod.GET })
+	// public String index(HttpServletRequest request) {
+	// Object object = request.getSession().getAttribute(SessionKey.USER.value());
+	// if (object == null) {
+	// return "login";
+	// }
+	// return "index";
+	// }
 }

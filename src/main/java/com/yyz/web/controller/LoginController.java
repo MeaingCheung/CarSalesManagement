@@ -1,6 +1,7 @@
 package com.yyz.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -80,18 +81,29 @@ public class LoginController {
 	}
 
 	/**
-	 * 登录成功进行跳转
-	 *
+	 * 跳转接口，没有登录跳转到登录页面，登录后跳转到主页
+	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/index", method = { RequestMethod.GET, RequestMethod.POST })
 	public String index(HttpServletRequest request, ModelMap modelMap) {
 		Object attribute = request.getSession().getAttribute(SessionKey.USER.value());
 		if (attribute == null) {
-			return "error";
+			return "login";
 		}
 		User user = (User) attribute;
 		modelMap.addAttribute("user", user);
 		return "index";
+	}
+
+	/**
+	 * 退出登录,跳转到登录页面
+	 *
+	 * @return
+	 */
+	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
+	public String logout(HttpSession session, ModelMap modelMap) {
+		session.removeAttribute(SessionKey.USER.value());
+		return "login";
 	}
 }

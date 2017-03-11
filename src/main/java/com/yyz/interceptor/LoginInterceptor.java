@@ -18,9 +18,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		Object obj = request.getSession().getAttribute(SessionKey.USER.value());
-		System.out.println("拦截器执行了。。。。");
 		if (obj == null) {
-			response.sendRedirect("login");
+			response.sendRedirect("/login");
+			return true;
 		}
 		return super.preHandle(request, response, handler);
 	}

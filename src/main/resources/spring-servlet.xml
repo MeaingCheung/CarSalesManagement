@@ -17,6 +17,7 @@
 		<property name="suffix" value=".jsp" />
 		<property name="contentType" value="text/html;charset=UTF-8" />
 	</bean>
+	<mvc:view-controller path="/login" view-name="login" />
 	<!-- 指定Bean扫描的包, 标注了 @Controller注解的类成为spring的bean -->
 	<context:component-scan base-package="com.yyz"
 		use-default-filters="false">
@@ -27,6 +28,9 @@
 		<!-- 登录拦截器 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/imageServlet" />
+			<mvc:exclude-mapping path="/login" />
+			<mvc:exclude-mapping path="/loginApi" />
 			<bean class="com.yyz.interceptor.LoginInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
