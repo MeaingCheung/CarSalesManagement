@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.yyz.entity.User;
 import com.yyz.service.UserService;
 import com.yyz.util.ValidateCodeGenerator;
-import com.yyz.util.VerificationCodeUtil;
 
 @Controller
 public class BaseController {
