@@ -1,5 +1,7 @@
 package com.yyz.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.yyz.commons.BaseMapper;
@@ -43,5 +45,18 @@ public interface UserMapper extends BaseMapper {
 	 * @return
 	 */
 	User selectByLoginName(@Param("loginName") String loginName);
+
+	/**
+	 * 根据条件进行分页查询
+	 * 
+	 * @param size
+	 * @param beginIndex
+	 * @param department
+	 * @param role
+	 *
+	 * @return
+	 */
+	List<User> selectByConditionAndPage(@Param("role") Integer role, @Param("department") Integer department,
+			@Param("beginIndex") int beginIndex, @Param("size") int size);
 
 }

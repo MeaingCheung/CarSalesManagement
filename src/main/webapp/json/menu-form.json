@@ -1,6 +1,6 @@
 [
-    {"name":"表单相关", "children":[
-        {"id":"base-button", "name":"按钮", "target":"navtab", "url":"html/form/button.html"},
+    {"name":"系统管理", "children":[
+        {"id":"base-button", "name":"员工信息", "target":"navtab", "url":"html/datagrid/datagrid-search.html"},
         {"id":"base-input", "name":"文本框", "target":"navtab", "url":"html/form/input.html"},
         {"id":"base-select", "name":"下拉选择框", "target":"navtab", "url":"html/form/select.html"},
         {"id":"base-checkbox", "name":"单选、复选框", "target":"navtab", "url":"html/form/checkbox.html"},

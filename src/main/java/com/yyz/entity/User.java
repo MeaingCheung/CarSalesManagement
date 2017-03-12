@@ -14,9 +14,9 @@ public class User implements Serializable {
 	private Long				id;
 
 	/**
-	 * 分组ID
+	 * 部门
 	 */
-	private Integer				groupId;
+	private Integer				department;
 
 	/** 
 	 * 
@@ -52,6 +52,14 @@ public class User implements Serializable {
 	 * 状态:默认0
 	 */
 	private Integer				status;
+	/**
+	 * 性别
+	 */
+	private Integer				gender;
+	/**
+	 * 年龄
+	 */
+	private Integer				age;
 
 	/**
 	 * 创建时间
@@ -107,15 +115,15 @@ public class User implements Serializable {
 	/**
 	 * 获取分组ID
 	 */
-	public Integer getGroupId() {
-		return groupId;
+	public Integer getDepartment() {
+		return department;
 	}
 
 	/**
 	 * 设置分组ID
 	 */
-	public void setGroupId(Integer groupId) {
-		this.groupId = groupId;
+	public void setDepartment(Integer department) {
+		this.department = department;
 	}
 
 	/**
@@ -312,5 +320,21 @@ public class User implements Serializable {
 	 */
 	public void setReserve2(String reserve2) {
 		this.reserve2 = reserve2 == null ? null : reserve2.trim();
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public Integer getGender() {
+		return gender;
+	}
+
+	public void setGender(Integer gender) {
+		this.gender = gender;
 	}
 }

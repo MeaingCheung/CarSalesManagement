@@ -172,13 +172,14 @@ function bjui_index_exchange() {
 				<ul class="nav navbar-nav navbar-right">
 					<li class="datetime"><a><span id="bjui-date">0000/00/00</span>
 							<span id="bjui-clock">00:00:00</span></a></li>
-					<li><a href="#">账号：${user.loginName}</a></li>
+					<li><a href="#">账号：${user.loginId}</a></li>
+					<li><a href="#">登录名：${user.loginName}</a></li>
 					<li><a href="#">角色：<c:choose>
 								<c:when test="${user.role==0}">管理员</c:when>
 								<c:when test="${user.role==1}">普通用户</c:when>
 								<c:otherwise>未知</c:otherwise>
 							</c:choose></a></li>
-					<li><a href="/changepassword.html" data-toggle="dialog"
+					<li><a href="/changepasswordUi" data-toggle="dialog"
 						data-id="sys_user_changepass" data-mask="true" data-width="400"
 						data-height="300">修改密码</a></li>
 					<li><a href="/logout" style="font-weight: bold;">&nbsp;<i
@@ -238,7 +239,7 @@ function bjui_index_exchange() {
 			<nav class="collapse navbar-collapse" id="bjui-navbar-collapse">
 				<ul class="nav navbar-nav navbar-right" id="bjui-hnav-navbar">
 					<li class="active"><a href="/json/menu-form.json"
-						data-toggle="sidenav" data-id-key="targetid">表单相关</a></li>
+						data-toggle="sidenav" data-id-key="targetid">系统管理</a></li>
 					<li><a href="/json/menu-base.json" data-toggle="sidenav"
 						data-id-key="targetid">基础组件</a></li>
 					<li><a href="/json/menu-datagrid.json" data-toggle="sidenav"
@@ -273,6 +274,7 @@ function bjui_index_exchange() {
 							<li><a href="javascript:;"><span><i
 										class="fa fa-home"></i> #maintab#</span></a></li>
 						</ul>
+
 					</div>
 					<div class="tabsLeft">
 						<i class="fa fa-angle-double-left"></i>
@@ -284,26 +286,30 @@ function bjui_index_exchange() {
 						<i class="fa fa-angle-double-down"></i>
 					</div>
 				</div>
+				<!-- 
 				<ul class="tabsMoreList">
 					<li><a href="javascript:;">#maintab#</a></li>
 				</ul>
+				 -->
+
 				<div class="navtab-panel tabsPageContent">
 					<div class="navtabPage unitBox">
 						<div class="bjui-pageContent">
 							<div class="highlight">
 								<pre class="prettyprint">
-------------------------
-BJUI 更新至 V1.31
-------------------------
-[修复] datagrid参数templateWidth、dialogFilterW为0时默认为启用；修复排序bug；新增字段参数itemattr，为items参数指定key/value；新增方法filter，用于数据筛选。
-[修复] 分页组件。
-[更新] ajaxform、ajaxsearch新增参数validate，是否验证标记。
-[更新] 验证插件nice validate更新至1.0.7。
-[更新] 图标字体Font Awesome更新至4.7.0。
-[调整] CSS细微调整。
+--------------------------------------
+基于JavaWeb的汽车销售管理系统的设计与实现
+--------------------------------------
+[学校] 河南财经政法大学
+[院系] 计算机与信息工程学院
+[专业] 信息管理与信息系统
+[班级] 130709班
+[指导老师] 王颖峰
+[姓名] 杨玉珍
+[学号] 20153206579
 ------------------------
 
-　　　　　　2016-11-01 by.萧克南
+　　　　　　2017-04-05 by.杨玉珍
                                 </pre>
 							</div>
 						</div>
