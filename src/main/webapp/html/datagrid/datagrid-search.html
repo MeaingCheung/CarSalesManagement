@@ -40,9 +40,9 @@
         toolbarItem: 'add,edit,del,|',
         dataUrl: '/getUserInfo',
         dataType: 'json',
-        jsonPrefix: 'obj',
-        editMode: {dialog:{width:'800',height:500,title:'编辑挂号信息',mask:true}},
-        editUrl: '../../html/datagrid/datagrid-edit.html?code={code}',
+        jsonPrefix: 'user',
+        editMode: {dialog:{width:'800',height:500,title:'编辑员工信息',mask:true}},
+        editUrl: '/html/datagrid/datagrid-edit.jsp?id={id}',
         paging: {pageSize:10},
         showCheckboxcol: true,
         linenumberAll: true,
@@ -61,6 +61,7 @@
                 <th data-options="{name:'createTime',align:'center',type:'date',pattern:'yyyy-MM-dd HH:mm:ss',quickfilter:false}">创建时间</th>
                 <th data-options="{name:'updateTime',align:'center',type:'date',pattern:'yyyy-MM-dd HH:mm:ss',quickfilter:false}">更新日期</th>
                 <th data-options="{name:'userRemark',align:'center',width:70,quickfilter:false}">备注</th>
+                <th data-options="{name:'id',align:'center',width:70,hide:true}">id</th>
             </tr>
         </thead>
     </table>
