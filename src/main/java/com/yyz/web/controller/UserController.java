@@ -152,4 +152,14 @@ public class UserController {
 		}
 		return selectDtoList;
 	}
+
+	@RequestMapping(value = "/addOrupdateUserUi", method = { RequestMethod.GET, RequestMethod.POST })
+	public String addOrupdateUserUi(HttpServletRequest request, ModelMap modelMap) {
+		String id = request.getParameter("id");
+		if (NumberUtils.isNumber(id)) {
+			User user = userService.findByPrimaryKey(Long.valueOf(id));
+			modelMap.addAttribute("user", user);
+		}
+		return "jsp/userEdit";
+	}
 }
