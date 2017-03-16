@@ -59,4 +59,11 @@ public interface UserMapper extends BaseMapper {
 	List<User> selectByConditionAndPage(@Param("role") Integer role, @Param("department") Integer department,
 			@Param("beginIndex") int beginIndex, @Param("size") int size);
 
+	/**
+	 * 查询当前最大的loginId
+	 *
+	 * @return
+	 */
+	Long selectMaxLoginId();
+
 }

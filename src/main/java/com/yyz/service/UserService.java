@@ -56,4 +56,11 @@ public interface UserService {
 	 * @return
 	 */
 	List<UserDto> findByConditionAndPage(Integer role, Integer department, int beginIndex, int size);
+
+	/**
+	 * 查找当前最大的loginId
+	 *
+	 * @return
+	 */
+	Long findMaxLoginId();
 }

@@ -101,4 +101,13 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	@Override
+	public Long findMaxLoginId() {
+		try {
+			return userMapper.selectMaxLoginId();
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
+
 }

@@ -24,9 +24,11 @@ import com.yyz.dto.SelectDto;
 import com.yyz.dto.UserDto;
 import com.yyz.entity.User;
 import com.yyz.enumerate.Department;
+import com.yyz.enumerate.Gender;
 import com.yyz.enumerate.SessionKey;
 import com.yyz.enumerate.UserRole;
 import com.yyz.service.UserService;
+import com.yyz.util.VerificationUtil;
 
 /**
  * 
@@ -161,5 +163,110 @@ public class UserController {
 			modelMap.addAttribute("user", user);
 		}
 		return "jsp/userEdit";
+	}
+
+	@RequestMapping(value = "/addOrUpdateUser", method = { RequestMethod.GET, RequestMethod.POST })
+	@ResponseBody
+	public CommonResultObject addOrUpdateUser(HttpServletRequest request) {
+		Object attribute = request.getSession().getAttribute(SessionKey.USER.value());
+		CommonResultObject commonResultObject = new CommonResultObject();
+		if (attribute == null) {
+			return commonResultObject.buildErrorResult("请先登录！");
+		}
+		String id = request.getParameter("id");
+		String loginName = request.getParameter("loginName");
+		String loginPhone = request.getParameter("loginPhone");
+		String loginMail = request.getParameter("loginMail");
+		String roleStr = request.getParameter("role");
+		String departmentStr = request.getParameter("department");
+		String ageStr = request.getParameter("age");
+		String userRemark = request.getParameter("userRemark");
+		String genderStr = request.getParameter("gender");
+		if (StringUtils.isBlank(loginName)) {
+			return commonResultObject.buildErrorResult("请输入登录名");
+		}
+		if (StringUtils.isNotBlank(loginPhone)) {
+			if (!VerificationUtil.checkLoginPhone(loginPhone)) {
+				logger.info("手机号格式不对，loginPhone=" + loginPhone);
+				return commonResultObject.buildErrorResult("请输入正确的手机号");
+			}
+		}
+		if (StringUtils.isNotBlank(loginMail)) {
+			if (!VerificationUtil.checkLoginMail(loginMail)) {
+				logger.info("邮箱格式不对，loginMail=" + loginMail);
+				return commonResultObject.buildErrorResult("请输入正确的邮箱");
+			}
+		}
+		if (StringUtils.isNotBlank(roleStr)) {
+			UserRole role = UserRole.getByValue(Integer.valueOf(roleStr));
+			if (role == null) {
+				logger.info("编辑失败，参数错误，role=" + roleStr);
+				return commonResultObject.buildErrorResult("编辑失败！");
+			}
+		}
+		if (StringUtils.isNotBlank(departmentStr)) {
+			Department department = Department.getByValue(Integer.valueOf(departmentStr));
+			if (department == null) {
+				logger.info("编辑失败，参数错误，department=" + departmentStr);
+				return commonResultObject.buildErrorResult("编辑失败！");
+			}
+		}
+		if (StringUtils.isNotBlank(ageStr)) {
+			if (!VerificationUtil.checkAge(ageStr)) {
+				logger.info("编辑失败，年龄参数错误，age=" + ageStr);
+				return commonResultObject.buildErrorResult("年龄非法！");
+			}
+		}
+		if (StringUtils.isNotBlank(ageStr)) {
+			Gender gender = Gender.getByValue(Integer.valueOf(genderStr));
+			if (gender == null) {
+				logger.info("编辑失败，性别参数错误，gender=" + genderStr);
+				return commonResultObject.buildErrorResult("年龄非法！");
+			}
+		}
+		User userForUpdate = new User();
+		userForUpdate.setAge(Integer.valueOf(ageStr));
+		userForUpdate.setDepartment(Integer.valueOf(departmentStr));
+		userForUpdate.setGender(Integer.valueOf(genderStr));
+		userForUpdate.setLoginMail(loginMail);
+		userForUpdate.setLoginName(loginName);
+		userForUpdate.setLoginPhone(loginPhone);
+		userForUpdate.setRole(Integer.valueOf(roleStr));
+		userForUpdate.setUserRemark(userRemark);
+		long now = System.currentTimeMillis();
+		userForUpdate.setUpdateTime(now);
+		try {
+			if (NumberUtils.isNumber(id)) {// 编辑
+				User user = userService.findByPrimaryKey(Long.valueOf(id));
+				if (user == null) {
+					logger.info("根据user id=" + id + ",查询不到用户。");
+					return commonResultObject.buildErrorResult("编辑失败");
+				}
+				User userFromDb = userService.findNormalUserByLoginName(loginName);
+				if (userFromDb != null && !user.getId().equals(userFromDb.getId())) {
+					return commonResultObject.buildErrorResult("用户名已存在！");
+				}
+				userForUpdate.setId(Long.valueOf(id));
+				userService.update(userForUpdate);
+			} else {// 新增
+				User user = userService.findNormalUserByLoginName(loginName);
+				if (user != null) {
+					return commonResultObject.buildErrorResult("用户名已存在！");
+				}
+				Long maxLoginId = userService.findMaxLoginId();
+				userForUpdate.setLoginId(maxLoginId + 1);
+				userForUpdate.setCreateTime(now);
+				// 设置初始密码123456
+				String encodePassword = new Md5PasswordEncoder().encodePassword("123456", Constant.MD5_SALT);
+				userForUpdate.setLoginPassword(encodePassword);
+				userForUpdate.setStatus(0);
+				userService.insert(userForUpdate);
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			return commonResultObject.buildErrorResult("操作失败");
+		}
+
+		return commonResultObject;
 	}
 }

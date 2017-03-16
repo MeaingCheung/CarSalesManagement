@@ -327,4 +327,11 @@
 		limit #{beginIndex},#{size}
 	</select>
 
+	<!-- 查询当前最大的loginId -->
+	<select id="selectMaxLoginId" resultType="java.lang.Long">
+		select MAX(loginId)
+		FROM
+		User
+	</select>
+
 </mapper>
