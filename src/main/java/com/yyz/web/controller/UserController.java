@@ -137,6 +137,7 @@ public class UserController {
 			department = Integer.valueOf(departmentStr);
 		}
 		List<UserDto> userList = userService.findByConditionAndPage(role, department, beginIndex, size);
+		commonResultObject.setPageCurrent(beginIndex);
 		commonResultObject.setList(userList);
 
 		return commonResultObject;

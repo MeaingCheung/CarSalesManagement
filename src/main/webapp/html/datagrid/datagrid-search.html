@@ -47,21 +47,22 @@
         showCheckboxcol: true,
         linenumberAll: true,
         filterThead:false,
+        showCheckboxcol:false,
+        editCallback:'refresh()',
     }">
         <thead>
             <tr>
-                <th data-options="{name:'loginId',align:'center',width:70,quickfilter:false}">账号</th>
-                <th data-options="{name:'department',align:'center',width:70,quickfilter:false}">部门</th>
-                <th data-options="{name:'role',align:'center',width:70,quickfilter:false}">角色</th>
-                <th data-options="{name:'loginName',align:'center',quickfilter:false}">登录名</th>
-                <th data-options="{name:'gender',align:'center',quickfilter:false}">性别</th>
-                <th data-options="{name:'age',align:'center',quickfilter:false}">年龄</th>
-                <th data-options="{name:'loginPhone',align:'center',quickfilter:false}">手机号</th>
-                <th data-options="{name:'loginMail',align:'center',width:70,quickfilter:false}">邮箱</th>
+                <th data-options="{name:'loginId',align:'center'}">账号</th>
+                <th data-options="{name:'loginName',align:'center'}">登录名</th>
+                <th data-options="{name:'gender',align:'center'}">性别</th>
+                <th data-options="{name:'age',align:'center'}">年龄</th>
+                <th data-options="{name:'department',align:'center'}">部门</th>
+                <th data-options="{name:'role',align:'center'}">角色</th>
+                <th data-options="{name:'loginPhone',align:'center'}">手机号</th>
+                <th data-options="{name:'loginMail',align:'center'}">邮箱</th>
                 <th data-options="{name:'createTime',align:'center',type:'date',pattern:'yyyy-MM-dd HH:mm:ss',quickfilter:false}">创建时间</th>
                 <th data-options="{name:'updateTime',align:'center',type:'date',pattern:'yyyy-MM-dd HH:mm:ss',quickfilter:false}">更新日期</th>
-                <th data-options="{name:'userRemark',align:'center',width:70,quickfilter:false}">备注</th>
-                <th data-options="{name:'id',align:'center',width:70,hide:true}">id</th>
+                <th data-options="{name:'userRemark',align:'center'}">备注</th>
             </tr>
         </thead>
     </table>

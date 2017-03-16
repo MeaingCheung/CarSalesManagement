@@ -6,7 +6,7 @@
 <div class="bjui-pageContent">
 	<form action="/addOrUpdateUser?id=${user.id}"
 		class="datagrid-edit-form" data-toggle="validate"
-		data-data-type="jsonp">
+		data-data-type="json">
 		<div class="bjui-row col-2">
 			<label class="row-label">登录名</label>
 			<div class="row-input required">
@@ -56,7 +56,7 @@
 				<select name="role" data-toggle="selectpicker" data-rule="required"
 					data-width="100%">
 					<option value="0" <c:if test="${user.role==0}">selected</c:if>>管理员</option>
-					<option value="1" <c:if test="${user.role==0}">selected</c:if>>普通员工</option>
+					<option value="1" <c:if test="${user.role==1}">selected</c:if>>普通员工</option>
 				</select>
 			</div>
 			<label class="row-label">备注：</label>
