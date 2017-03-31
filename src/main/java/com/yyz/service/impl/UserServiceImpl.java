@@ -1,10 +1,16 @@
 package com.yyz.service.impl;
 
 import com.yyz.dao.UserMapper;
+import com.yyz.dto.UserDto;
 import com.yyz.entity.User;
+import com.yyz.enumerate.Department;
+import com.yyz.enumerate.Gender;
+import com.yyz.enumerate.UserRole;
 import com.yyz.service.UserService;
+import com.yyz.util.DateUtil;
 import com.yyz.web.controller.BaseController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -60,6 +66,45 @@ public class UserServiceImpl implements UserService {
 	public User findNormalUserByLoginName(String loginName) {
 		try {
 			return userMapper.selectByLoginName(loginName);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
+
+	@Override
+	public List<UserDto> findByConditionAndPage(Integer role, Integer department, int beginIndex, int size) {
+		try {
+			List<UserDto> userDtoList = new ArrayList<UserDto>();
+			List<User> userList = userMapper.selectByConditionAndPage(role, department, beginIndex, size);
+			for (User user : userList) {
+				UserDto userDto = new UserDto();
+				userDto.setId(user.getId());
+				userDto.setCreateTime(DateUtil.convertTimeStampToString(user.getCreateTime()));
+				Department departmentEnu = Department.getByValue(user.getDepartment());
+				userDto.setDepartment(departmentEnu == null ? "" : departmentEnu.getComment());
+				userDto.setAge(user.getAge());
+				userDto.setLoginId(user.getLoginId());
+				userDto.setLoginMail(user.getLoginMail());
+				userDto.setLoginName(user.getLoginName());
+				userDto.setLoginPhone(user.getLoginPhone());
+				UserRole userRole = UserRole.getByValue(user.getRole());
+				userDto.setRole(userRole == null ? "" : userRole.getComment());
+				userDto.setGender(Gender.getByValue(user.getGender()).getComment());
+				userDto.setUpdateTime(DateUtil.convertTimeStampToString(user.getUpdateTime()));
+				userDto.setUserRemark(user.getUserRemark());
+				userDtoList.add(userDto);
+			}
+			return userDtoList;
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+
+	}
+
+	@Override
+	public Long findMaxLoginId() {
+		try {
+			return userMapper.selectMaxLoginId();
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}

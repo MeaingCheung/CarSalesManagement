@@ -13,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.yyz.constant.Constant;
 import com.yyz.entity.User;
 import com.yyz.enumerate.SessionKey;
 import com.yyz.service.UserService;
@@ -29,7 +30,7 @@ import com.yyz.util.ValidateCodeGenerator;
 public class LoginController {
 	@Autowired
 	private UserService			userService;
-	private final static Logger	logger	= LoggerFactory.getLogger(BaseController.class);
+	private final static Logger	logger	= LoggerFactory.getLogger(LoginController.class);
 
 	/**
 	 * 登录接口
@@ -68,14 +69,13 @@ public class LoginController {
 			return "login";
 		}
 		Md5PasswordEncoder md5PasswordEncoder = new Md5PasswordEncoder();
-		String encodePassword = md5PasswordEncoder.encodePassword(password, "password");
+		String encodePassword = md5PasswordEncoder.encodePassword(password, Constant.MD5_SALT);
 		if (!StringUtils.endsWithIgnoreCase(user.getLoginPassword(), encodePassword)) {
 			errorMsg = "密码错误！";
 			modelMap.addAttribute("errorMsg", errorMsg);
 			logger.info("password=" + password + ",encodePassword=" + encodePassword);
 			return "login";
 		}
-		logger.info("user id =" + user.getId());
 		request.getSession().setAttribute(SessionKey.USER.value(), user);
 		return "redirect:index";
 	}

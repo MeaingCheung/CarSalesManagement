@@ -1,5 +1,8 @@
 package com.yyz.service;
 
+import java.util.List;
+
+import com.yyz.dto.UserDto;
 import com.yyz.entity.User;
 
 /**
@@ -41,4 +44,23 @@ public interface UserService {
 	 * @return
 	 */
 	User findNormalUserByLoginName(String loginName);
+
+	/**
+	 * 根据条件进行分页查询
+	 * 
+	 * @param size
+	 * @param beginIndex
+	 * @param department
+	 * @param role
+	 *
+	 * @return
+	 */
+	List<UserDto> findByConditionAndPage(Integer role, Integer department, int beginIndex, int size);
+
+	/**
+	 * 查找当前最大的loginId
+	 *
+	 * @return
+	 */
+	Long findMaxLoginId();
 }

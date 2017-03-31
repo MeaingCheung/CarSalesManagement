@@ -199,7 +199,7 @@ body {
 				</div>
 				<div class="text-center">
 					<hr>
-					2015 - 2017 <a href="login.jsp">河南财经政法大学</a>
+					2015 - 2017 <a href="http://cs.huel.edu.cn/">河南财经政法大学计算机与信息工程学院</a>
 				</div>
 			</form>
 		</div>

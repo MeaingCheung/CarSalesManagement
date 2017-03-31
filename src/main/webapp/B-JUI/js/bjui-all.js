@@ -395,7 +395,7 @@
         })
         
         /* ajax加载提示 */
-        BJUI.setRegional('progressmsg', '正在努力加载数据，请稍等...')
+        BJUI.setRegional('progressmsg', '正在拼命加载数据，请稍等...')
         
         /* 日期选择器 */
         BJUI.setRegional('datepicker', {
