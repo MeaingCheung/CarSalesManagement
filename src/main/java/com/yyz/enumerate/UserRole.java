@@ -1,8 +1,10 @@
 package com.yyz.enumerate;
 
 public enum UserRole {
-	ADMIN(0, "管理员"),
-	NORMAL_USER(1, "普通用户");
+	MANAGER(0, "经理"),
+	SLAER(1, "销售员"),
+	accountant(2,"会计"),
+	WAREHOUSE_KEEPER(3,"仓库员");
 	private final Integer	value;
 	private final String	comment;
 

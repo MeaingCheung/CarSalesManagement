@@ -76,7 +76,7 @@ public class UserController {
 		User user = userService.findByPrimaryKey(Long.valueOf(id));
 		User loginUser = (User) attribute;
 		UserRole role = UserRole.getByValue(loginUser.getRole());
-		if (!UserRole.ADMIN.equals(role) && !user.getId().equals(loginUser.getId())) {
+		if (!UserRole.MANAGER.equals(role) && !user.getId().equals(loginUser.getId())) {
 			return commonResultObject.buildErrorResult("无权限！");
 		}
 		String oldpassword = request.getParameter("oldpassword");
