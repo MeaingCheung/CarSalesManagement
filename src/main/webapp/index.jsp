@@ -175,10 +175,10 @@ function bjui_index_exchange() {
 					<li><a href="#">工号：${user.loginId}</a></li>
 					<li><a href="#">登录名：${user.loginName}</a></li>
 					<li><a href="#">角色：<c:choose>
-								<c:when test="${user.role==0}">经理</c:when>
-								<c:when test="${user.role==1}">销售员</c:when>
-								<c:when test="${user.role==2}">会计</c:when>
-								<c:when test="${user.role==3}">仓库员</c:when>
+								<c:when test="${user.position==0}">经理</c:when>
+								<c:when test="${user.position==1}">销售员</c:when>
+								<c:when test="${user.position==2}">会计</c:when>
+								<c:when test="${user.position==3}">仓库员</c:when>
 								<c:otherwise>未知</c:otherwise>
 							</c:choose></a></li>
 					<li><a href="/changepasswordUi" data-toggle="dialog"

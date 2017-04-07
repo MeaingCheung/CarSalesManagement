@@ -26,7 +26,7 @@ import com.yyz.entity.User;
 import com.yyz.enumerate.Department;
 import com.yyz.enumerate.Gender;
 import com.yyz.enumerate.SessionKey;
-import com.yyz.enumerate.UserRole;
+import com.yyz.enumerate.UserPosition;
 import com.yyz.service.UserService;
 import com.yyz.util.ValidateCodeGenerator;
 import com.yyz.util.VerificationUtil;
@@ -76,8 +76,8 @@ public class UserController {
 		}
 		User user = userService.findByPrimaryKey(Long.valueOf(id));
 		User loginUser = (User) attribute;
-		UserRole role = UserRole.getByValue(loginUser.getRole());
-		if (!UserRole.MANAGER.equals(role) && !user.getId().equals(loginUser.getId())) {
+		UserPosition role = UserPosition.getByValue(loginUser.getPosition());
+		if (!UserPosition.MANAGER.equals(role) && !user.getId().equals(loginUser.getId())) {
 			return commonResultObject.buildErrorResult("无权限！");
 		}
 		String oldpassword = request.getParameter("oldpassword");
@@ -126,18 +126,18 @@ public class UserController {
 			size = Integer.valueOf(pageSize);
 		}
 		User loginUser = (User) attribute;
-		UserRole userRole = UserRole.getByValue(loginUser.getRole());
-		String roleStr = request.getParameter("role");
-		Integer role = null;
-		if (NumberUtils.isNumber(roleStr)) {
-			role = Integer.valueOf(roleStr);
+		UserPosition userRole = UserPosition.getByValue(loginUser.getPosition());
+		String positionStr = request.getParameter("position");
+		Integer position = null;
+		if (NumberUtils.isNumber(positionStr)) {
+			position = Integer.valueOf(positionStr);
 		}
 		String departmentStr = request.getParameter("department");
 		Integer department = null;
 		if (NumberUtils.isNumber(departmentStr)) {
 			department = Integer.valueOf(departmentStr);
 		}
-		List<UserDto> userList = userService.findByConditionAndPage(role, department, beginIndex, size);
+		List<UserDto> userList = userService.findByConditionAndPage(position, department, beginIndex, size);
 		commonResultObject.setPageCurrent(beginIndex);
 		commonResultObject.setList(userList);
 
@@ -179,7 +179,7 @@ public class UserController {
 		String loginName = request.getParameter("loginName");
 		String loginPhone = request.getParameter("loginPhone");
 		String loginMail = request.getParameter("loginMail");
-		String roleStr = request.getParameter("role");
+		String positionStr = request.getParameter("position");
 		String departmentStr = request.getParameter("department");
 		String ageStr = request.getParameter("age");
 		String userRemark = request.getParameter("userRemark");
@@ -199,10 +199,10 @@ public class UserController {
 				return commonResultObject.buildErrorResult("请输入正确的邮箱");
 			}
 		}
-		if (StringUtils.isNotBlank(roleStr)) {
-			UserRole role = UserRole.getByValue(Integer.valueOf(roleStr));
+		if (StringUtils.isNotBlank(positionStr)) {
+			UserPosition role = UserPosition.getByValue(Integer.valueOf(positionStr));
 			if (role == null) {
-				logger.info("编辑失败，参数错误，role=" + roleStr);
+				logger.info("编辑失败，参数错误，role=" + positionStr);
 				return commonResultObject.buildErrorResult("编辑失败！");
 			}
 		}
@@ -233,7 +233,7 @@ public class UserController {
 		userForUpdate.setLoginMail(loginMail);
 		userForUpdate.setLoginName(loginName);
 		userForUpdate.setLoginPhone(loginPhone);
-		userForUpdate.setRole(Integer.valueOf(roleStr));
+		userForUpdate.setPosition(Integer.valueOf(positionStr));
 		userForUpdate.setUserRemark(userRemark);
 		long now = System.currentTimeMillis();
 		userForUpdate.setUpdateTime(now);

@@ -51,3 +51,6 @@ CREATE TABLE `Customer` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_identifierNumber` (`identifierNumber`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户表';
+7.用户表更改字段名
+ALTER TABLE `User`
+CHANGE COLUMN `role` `position`  int(10) NULL DEFAULT NULL COMMENT '职位' AFTER `loginPassword`;

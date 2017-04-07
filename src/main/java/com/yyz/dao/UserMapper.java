@@ -56,7 +56,7 @@ public interface UserMapper extends BaseMapper {
 	 *
 	 * @return
 	 */
-	List<User> selectByConditionAndPage(@Param("role") Integer role, @Param("department") Integer department,
+	List<User> selectByConditionAndPage(@Param("position") Integer position, @Param("department") Integer department,
 			@Param("beginIndex") int beginIndex, @Param("size") int size);
 
 	/**

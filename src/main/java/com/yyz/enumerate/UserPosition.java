@@ -1,26 +1,26 @@
 package com.yyz.enumerate;
 
-public enum UserRole {
+public enum UserPosition {
 	MANAGER(0, "经理"),
 	SLAER(1, "销售员"),
-	accountant(2,"会计"),
-	WAREHOUSE_KEEPER(3,"仓库员");
+	ACCOUNTANT(2, "会计"),
+	WAREHOUSE_KEEPER(3, "仓库员");
 	private final Integer	value;
 	private final String	comment;
 
-	private UserRole(Integer value, String comment) {
+	private UserPosition(Integer value, String comment) {
 		this.value = value;
 		this.comment = comment;
 	}
 
-	public static UserRole getByValue(Integer value) {
+	public static UserPosition getByValue(Integer value) {
 		if (value == null) {
 			return null;
 		}
 
-		for (UserRole userRole : UserRole.values()) {
-			if (userRole.getValue().equals(value)) {
-				return userRole;
+		for (UserPosition userPosition : UserPosition.values()) {
+			if (userPosition.getValue().equals(value)) {
+				return userPosition;
 			}
 		}
 		return null;

@@ -51,12 +51,14 @@
 						<c:if test="${user.department==4}">selected</c:if>>售后服务部</option>
 				</select>
 			</div>
-			<label class="row-label">角色：</label>
+			<label class="row-label">职务：</label>
 			<div class="row-input required">
-				<select name="role" data-toggle="selectpicker" data-rule="required"
+				<select name="position" data-toggle="selectpicker" data-rule="required"
 					data-width="100%">
-					<option value="0" <c:if test="${user.role==0}">selected</c:if>>管理员</option>
-					<option value="1" <c:if test="${user.role==1}">selected</c:if>>普通员工</option>
+					<option value="0" <c:if test="${user.position==0}">selected</c:if>>经理</option>
+					<option value="1" <c:if test="${user.position==1}">selected</c:if>>销售员</option>
+					<option value="2" <c:if test="${user.position==2}">selected</c:if>>会计</option>
+					<option value="3" <c:if test="${user.position==3}">selected</c:if>>仓库员</option>
 				</select>
 			</div>
 			<label class="row-label">备注：</label>
