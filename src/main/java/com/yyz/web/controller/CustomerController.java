@@ -92,7 +92,7 @@ public class CustomerController extends BaseController {
 
 	@RequestMapping(value = "/addOrUpdateCustomer", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
-	public CommonResultObject addOrUpdateUser(HttpServletRequest request) {
+	public CommonResultObject addOrUpdateCustomer(HttpServletRequest request) {
 		CommonResultObject commonResultObject = new CommonResultObject();
 		User loginUser = getLoginUser(request);
 		if (loginUser == null) {
@@ -165,7 +165,7 @@ public class CustomerController extends BaseController {
 			if (NumberUtils.isNumber(id)) {// 编辑
 				Customer customer = customerService.findByPrimaryKey(Long.valueOf(id));
 				if (customer == null) {
-					logger.info("根据user id=" + id + ",查询不到客户户。");
+					logger.info("根据customer id=" + id + ",查询不到客户。");
 					return commonResultObject.buildErrorResult("编辑失败");
 				}
 				customerForUpdate.setId(Long.valueOf(id));

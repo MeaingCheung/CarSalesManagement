@@ -54,3 +54,22 @@ CREATE TABLE `Customer` (
 7.用户表更改字段名
 ALTER TABLE `User`
 CHANGE COLUMN `role` `position`  int(10) NULL DEFAULT NULL COMMENT '职位' AFTER `loginPassword`;
+8.新建厂商表
+CREATE TABLE `Manufacturer` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `createUserLoginId` bigint(20) NOT NULL COMMENT '创建人登录id',
+  `serialNumber` bigint(20) NOT NULL COMMENT '编号',
+  `name` varchar(100) NOT NULL COMMENT '名称',
+  `address` varchar(255) DEFAULT NULL COMMENT '地址',
+  `contactNumber` varchar(50) DEFAULT NULL COMMENT '联系电话',
+  `contactEmail` varchar(100) DEFAULT NULL COMMENT '联系邮箱',
+  `webSite` varchar(100) DEFAULT NULL COMMENT '官网地址',
+  `createTime` bigint(20) NOT NULL COMMENT '创建时间',
+  `updateTime` bigint(20) NOT NULL COMMENT '更新时间',
+  `deleteTime` bigint(20) DEFAULT NULL COMMENT '删除时间',
+  `reserve0` bigint(20) DEFAULT NULL COMMENT '备用字段0',
+  `reserve1` bigint(20) DEFAULT NULL COMMENT '备用字段1',
+  `reserve2` bigint(20) DEFAULT NULL COMMENT '备用字段2',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_serialNumber` (`serialNumber`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='厂商信息表';
