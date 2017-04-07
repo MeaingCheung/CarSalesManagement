@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,6 +28,7 @@ import com.yyz.enumerate.Gender;
 import com.yyz.enumerate.SessionKey;
 import com.yyz.enumerate.UserRole;
 import com.yyz.service.UserService;
+import com.yyz.util.ValidateCodeGenerator;
 import com.yyz.util.VerificationUtil;
 
 /**
@@ -222,7 +223,7 @@ public class UserController {
 			Gender gender = Gender.getByValue(Integer.valueOf(genderStr));
 			if (gender == null) {
 				logger.info("编辑失败，性别参数错误，gender=" + genderStr);
-				return commonResultObject.buildErrorResult("年龄非法！");
+				return commonResultObject.buildErrorResult("性别非法！");
 			}
 		}
 		User userForUpdate = new User();
@@ -270,4 +271,22 @@ public class UserController {
 
 		return commonResultObject;
 	}
+
+	@RequestMapping(value = "/imageServlet", method = { RequestMethod.POST, RequestMethod.GET })
+	public void imageServlet(HttpServletRequest request, HttpServletResponse response) {
+		// 设置相应类型,告诉浏览器输出的内容为图片
+		response.setContentType("image/jpeg");
+		// 设置响应头信息，告诉浏览器不要缓存此内容
+		response.setHeader("Pragma", "No-cache");
+		response.setHeader("Cache-Control", "no-cache");
+		response.setDateHeader("Expire", 0);
+		ValidateCodeGenerator randomValidateCode = new ValidateCodeGenerator();
+		try {
+			// 输出图片方法
+			randomValidateCode.getPicRandcode(request, response);
+		} catch (Exception e) {
+			logger.error(e.toString());
+		}
+	}
+
 }

@@ -30,3 +30,24 @@ ADD COLUMN `age`  int(10) NULL DEFAULT NULL COMMENT '年龄' AFTER `sex`;
 5.更改User表字段名
 ALTER TABLE `User`
 CHANGE COLUMN `sex` `gender`  int(10) NOT NULL AFTER `status`;
+6.新建客户表
+CREATE TABLE `Customer` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `identifierNumber` bigint(20) NOT NULL COMMENT '客户编号',
+  `name` varchar(100) NOT NULL,
+  `gender` int(10) NOT NULL COMMENT '性别',
+  `age` int(10) NOT NULL COMMENT '年龄',
+  `createUserLoginId` bigint(20) NOT NULL COMMENT '创建人登录id',
+  `job` varchar(100) DEFAULT NULL COMMENT '职业',
+  `phoneNumber` varchar(50) DEFAULT NULL COMMENT '电话号码',
+  `address` varchar(100) DEFAULT NULL COMMENT '地址',
+  `email` varchar(100) DEFAULT NULL COMMENT '邮箱',
+  `createTime` bigint(20) NOT NULL COMMENT '创建时间',
+  `updateTime` bigint(20) NOT NULL COMMENT '更新时间',
+  `deleteTime` bigint(20) DEFAULT NULL COMMENT '删除时间',
+  `reserve0` bigint(20) DEFAULT NULL COMMENT '备用字段0',
+  `reserve1` bigint(20) DEFAULT NULL COMMENT '备用字段1',
+  `reserve2` varchar(255) DEFAULT NULL COMMENT '备用字段2',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_identifierNumber` (`identifierNumber`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户表';
