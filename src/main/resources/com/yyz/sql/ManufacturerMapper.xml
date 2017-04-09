@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yyz.dao.ManufacturerMapper">
+	<!-- 实体类 - 数据库映射 -->
+	<resultMap id="BaseResultMap" type="com.yyz.entity.Manufacturer">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="createUserLoginId" property="createUserLoginId"
+			jdbcType="BIGINT" />
+		<result column="serialNumber" property="serialNumber" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="contactNumber" property="contactNumber"
+			jdbcType="VARCHAR" />
+		<result column="contactEmail" property="contactEmail" jdbcType="VARCHAR" />
+		<result column="webSite" property="webSite" jdbcType="VARCHAR" />
+		<result column="createTime" property="createTime" jdbcType="BIGINT" />
+		<result column="updateTime" property="updateTime" jdbcType="BIGINT" />
+		<result column="deleteTime" property="deleteTime" jdbcType="BIGINT" />
+		<result column="reserve0" property="reserve0" jdbcType="BIGINT" />
+		<result column="reserve1" property="reserve1" jdbcType="BIGINT" />
+		<result column="reserve2" property="reserve2" jdbcType="BIGINT" />
+	</resultMap>
+
+	<!-- 用于 SELECT 语句的所有字段 -->
+	<sql id="Base_Column_List">
+		id, createUserLoginId, serialNumber,
+		name, address,
+		contactNumber, contactEmail,
+		webSite, createTime, updateTime,
+		deleteTime, reserve0, reserve1, reserve2
+	</sql>
+
+	<!-- 按主键查询 -->
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from Manufacturer
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<!-- -->
+	<insert id="insert" parameterType="com.yyz.entity.Manufacturer">
+		<selectKey resultType="java.lang.Long" keyProperty="id"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into Manufacturer (createUserLoginId, serialNumber, name,
+		address, contactNumber, contactEmail,
+		webSite, createTime, updateTime,
+		deleteTime, reserve0, reserve1,
+		reserve2)
+		values
+		(#{createUserLoginId,jdbcType=BIGINT},
+		#{serialNumber,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR}, #{contactNumber,jdbcType=VARCHAR},
+		#{contactEmail,jdbcType=VARCHAR},
+		#{webSite,jdbcType=VARCHAR},
+		#{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT},
+		#{deleteTime,jdbcType=BIGINT}, #{reserve0,jdbcType=BIGINT},
+		#{reserve1,jdbcType=BIGINT},
+		#{reserve2,jdbcType=BIGINT})
+	</insert>
+
+	<!-- 插入 - 仅保存给定实体类中非null的字段 -->
+	<insert id="insertSelective" parameterType="com.yyz.entity.Manufacturer">
+		<selectKey resultType="java.lang.Long" keyProperty="id"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into Manufacturer
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="createUserLoginId != null">
+				createUserLoginId,
+			</if>
+			<if test="serialNumber != null">
+				serialNumber,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="contactNumber != null">
+				contactNumber,
+			</if>
+			<if test="contactEmail != null">
+				contactEmail,
+			</if>
+			<if test="webSite != null">
+				webSite,
+			</if>
+			<if test="createTime != null">
+				createTime,
+			</if>
+			<if test="updateTime != null">
+				updateTime,
+			</if>
+			<if test="deleteTime != null">
+				deleteTime,
+			</if>
+			<if test="reserve0 != null">
+				reserve0,
+			</if>
+			<if test="reserve1 != null">
+				reserve1,
+			</if>
+			<if test="reserve2 != null">
+				reserve2,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="createUserLoginId != null">
+				#{createUserLoginId,jdbcType=BIGINT},
+			</if>
+			<if test="serialNumber != null">
+				#{serialNumber,jdbcType=BIGINT},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="contactNumber != null">
+				#{contactNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="contactEmail != null">
+				#{contactEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="webSite != null">
+				#{webSite,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=BIGINT},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=BIGINT},
+			</if>
+			<if test="deleteTime != null">
+				#{deleteTime,jdbcType=BIGINT},
+			</if>
+			<if test="reserve0 != null">
+				#{reserve0,jdbcType=BIGINT},
+			</if>
+			<if test="reserve1 != null">
+				#{reserve1,jdbcType=BIGINT},
+			</if>
+			<if test="reserve2 != null">
+				#{reserve2,jdbcType=BIGINT},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 按主键更新 - 仅更新给定实体类中非null的字段 -->
+	<update id="updateByPrimaryKeySelective" parameterType="com.yyz.entity.Manufacturer">
+		update Manufacturer
+		<set>
+			<if test="createUserLoginId != null">
+				createUserLoginId =
+				#{createUserLoginId,jdbcType=BIGINT},
+			</if>
+			<if test="serialNumber != null">
+				serialNumber =
+				#{serialNumber,jdbcType=BIGINT},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="contactNumber != null">
+				contactNumber =
+				#{contactNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="contactEmail != null">
+				contactEmail =
+				#{contactEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="webSite != null">
+				webSite = #{webSite,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				createTime =
+				#{createTime,jdbcType=BIGINT},
+			</if>
+			<if test="updateTime != null">
+				updateTime =
+				#{updateTime,jdbcType=BIGINT},
+			</if>
+			<if test="deleteTime != null">
+				deleteTime =
+				#{deleteTime,jdbcType=BIGINT},
+			</if>
+			<if test="reserve0 != null">
+				reserve0 =
+				#{reserve0,jdbcType=BIGINT},
+			</if>
+			<if test="reserve1 != null">
+				reserve1 =
+				#{reserve1,jdbcType=BIGINT},
+			</if>
+			<if test="reserve2 != null">
+				reserve2 =
+				#{reserve2,jdbcType=BIGINT},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<!-- -->
+	<update id="updateByPrimaryKey" parameterType="com.yyz.entity.Manufacturer">
+		update
+		Manufacturer
+		set createUserLoginId =
+		#{createUserLoginId,jdbcType=BIGINT},
+		serialNumber =
+		#{serialNumber,jdbcType=BIGINT},
+		name = #{name,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		contactNumber =
+		#{contactNumber,jdbcType=VARCHAR},
+		contactEmail =
+		#{contactEmail,jdbcType=VARCHAR},
+		webSite =
+		#{webSite,jdbcType=VARCHAR},
+		createTime =
+		#{createTime,jdbcType=BIGINT},
+		updateTime =
+		#{updateTime,jdbcType=BIGINT},
+		deleteTime =
+		#{deleteTime,jdbcType=BIGINT},
+		reserve0 = #{reserve0,jdbcType=BIGINT},
+		reserve1 = #{reserve1,jdbcType=BIGINT},
+		reserve2 =
+		#{reserve2,jdbcType=BIGINT}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<!-- 根据条件分页查询 -->
+	<select id="selectByConditionAndPage" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from Manufacturer
+		<where>
+			<if test="createUserLoginId != null">
+				and createUserLoginId =
+				#{createUserLoginId,jdbcType=BIGINT}
+			</if>
+			and deleteTime is null
+		</where>
+		order by id desc
+		limit #{beginIndex},#{size}
+	</select>
+
+	<!-- 根据唯一索引查询 -->
+	<select id="selectByUniqueKey" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from Manufacturer
+		where
+		serialNumber= #{serialNumber,jdbcType=BIGINT}
+	</select>
+</mapper>

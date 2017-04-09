@@ -1,39 +1,42 @@
-<div class="bjui-pageHeader" style="background-color:#fefefe; border-bottom:none;">
-<form data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-test-filter')}">
-    <fieldset>
-        <legend style="font-weight:normal;">筛选信息：</legend>
-        <div style="margin:0; padding:1px 5px 5px;">
-            <span>部门：</span>
-            <select name="department" data-toggle="selectpicker">
-            <option value="">全部</option>
-            <option value="0">行政部</option>
-            <option value="1">技术部</option>
-            <option value="2">销售部</option>
-            <option value="3">财务部</option>
-            <option value="4">售后服务部</option>
-        </select>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <span>角色：</span>
-            <select name="role" data-toggle="selectpicker">
-            <option value="">全部</option>
-            <option value="0">管理员</option>
-            <option value="1">普通用户</option>
-        </select>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <div class="btn-group">
-                <button type="submit" class="btn-green" data-icon="search">搜索</button>
-                <!-- 
+<div class="bjui-pageHeader"
+	style="background-color: #fefefe; border-bottom: none;">
+	<form data-toggle="ajaxsearch"
+		data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-test-filter')}">
+		<fieldset>
+			<legend style="font-weight: normal;">筛选信息：</legend>
+			<div style="margin: 0; padding: 1px 5px 5px;">
+				<span>部门：</span> <select name="department"
+					data-toggle="selectpicker">
+					<option value="">全部</option>
+					<option value="0">人数部</option>
+					<option value="1">采购部</option>
+					<option value="2">销售部</option>
+					<option value="3">财务部</option>
+					<option value="4">售后服务部</option>
+				</select> &nbsp;&nbsp;&nbsp;&nbsp; <span>角色：</span> <select name="role"
+					data-toggle="selectpicker">
+					<option value="">全部</option>
+					<option value="0">经理</option>
+					<option value="1">销售员</option>
+					<option value="2">会计</option>
+					<option value="3">仓库员</option>
+				</select> &nbsp;&nbsp;&nbsp;&nbsp;
+				<div class="btn-group">
+					<button type="submit" class="btn-green" data-icon="search">搜索</button>
+					<!-- 
                 
                 <button type="reset" class="btn-orange" data-icon="times">重置</button>
                  -->
-            </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-        </div>
-    </fieldset>
-</form>
+				</div>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+		</fieldset>
+	</form>
 </div>
 <div class="bjui-pageContent">
-    <table class="table table-bordered" id="datagrid-test-filter" data-toggle="datagrid" data-options="{
+	<table class="table table-bordered" id="datagrid-test-filter"
+		data-toggle="datagrid"
+		data-options="{
         height: '100%',
         gridTitle : '员工信息管理',
         showToolbar: true,
@@ -50,20 +53,22 @@
         showCheckboxcol:false,
         editCallback:'refresh()',
     }">
-        <thead>
-            <tr>
-                <th data-options="{name:'loginId',align:'center'}">账号</th>
-                <th data-options="{name:'loginName',align:'center'}">登录名</th>
-                <th data-options="{name:'gender',align:'center'}">性别</th>
-                <th data-options="{name:'age',align:'center'}">年龄</th>
-                <th data-options="{name:'department',align:'center'}">部门</th>
-                <th data-options="{name:'role',align:'center'}">角色</th>
-                <th data-options="{name:'loginPhone',align:'center'}">手机号</th>
-                <th data-options="{name:'loginMail',align:'center'}">邮箱</th>
-                <th data-options="{name:'createTime',align:'center',type:'date',pattern:'yyyy-MM-dd HH:mm:ss',quickfilter:false}">创建时间</th>
-                <th data-options="{name:'updateTime',align:'center',type:'date',pattern:'yyyy-MM-dd HH:mm:ss',quickfilter:false}">更新日期</th>
-                <th data-options="{name:'userRemark',align:'center'}">备注</th>
-            </tr>
-        </thead>
-    </table>
+		<thead>
+			<tr>
+				<th data-options="{name:'loginId',align:'center'}">工号</th>
+				<th data-options="{name:'loginName',align:'center'}">登录名</th>
+				<th data-options="{name:'gender',align:'center'}">性别</th>
+				<th data-options="{name:'age',align:'center'}">年龄</th>
+				<th data-options="{name:'department',align:'center'}">部门</th>
+				<th data-options="{name:'role',align:'center'}">职务</th>
+				<th data-options="{name:'loginPhone',align:'center'}">手机号</th>
+				<th data-options="{name:'loginMail',align:'center'}">邮箱</th>
+				<th
+					data-options="{name:'createTime',align:'center',type:'date',pattern:'yyyy-MM-dd HH:mm:ss',quickfilter:false}">创建时间</th>
+				<th
+					data-options="{name:'updateTime',align:'center',type:'date',pattern:'yyyy-MM-dd HH:mm:ss',quickfilter:false}">更新日期</th>
+				<th data-options="{name:'userRemark',align:'center'}">备注</th>
+			</tr>
+		</thead>
+	</table>
 </div>

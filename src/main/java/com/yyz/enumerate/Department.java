@@ -7,8 +7,8 @@ package com.yyz.enumerate;
  * @version Department.java, v 0.1 2017年3月12日 下午6:50:57
  */
 public enum Department {
-	ADMINISTRATION(0, "行政部"),
-	TECH(1, "技术部"),
+	ADMINISTRATION(0, "人事部"),
+	PURCHASE(1, "采购部"),
 	SALE(2, "销售部"),
 	ACCOUNTING(3, "财务部"),
 	AFTER_SALE_SERVICE(4, "售后服务部");

@@ -11,7 +11,7 @@
 		<result column="loginMail" property="loginMail" jdbcType="VARCHAR" />
 		<result column="loginPassword" property="loginPassword"
 			jdbcType="VARCHAR" />
-		<result column="role" property="role" jdbcType="INTEGER" />
+		<result column="position" property="position" jdbcType="INTEGER" />
 		<result column="status" property="status" jdbcType="INTEGER" />
 		<result column="gender" property="gender" jdbcType="INTEGER" />
 		<result column="age" property="age" jdbcType="INTEGER" />
@@ -28,7 +28,7 @@
 	<sql id="Base_Column_List">
 		id, department, loginId, loginPhone,
 		loginName, loginMail,
-		loginPassword, role, status,gender,age,
+		loginPassword, position, status,gender,age,
 		createTime, updateTime,
 		deleteTime,
 		userRemark, reserve0, reserve1, reserve2
@@ -53,7 +53,7 @@
 		loginName,
 		loginMail,
 		loginPassword,
-		role, status, gender,age,createTime,
+		position, status, gender,age,createTime,
 		updateTime,
 		deleteTime,
 		userRemark,
@@ -64,7 +64,7 @@
 		#{loginPhone,jdbcType=VARCHAR},
 		#{loginName,jdbcType=VARCHAR},
 		#{loginMail,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR},
-		#{role,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
+		#{position,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
 		#{gender,jdbcType=INTEGER},#{age,jdbcType=INTEGER},
 		#{createTime,jdbcType=BIGINT},
 		#{updateTime,jdbcType=BIGINT},
@@ -100,8 +100,8 @@
 			<if test="loginPassword != null">
 				loginPassword,
 			</if>
-			<if test="role != null">
-				role,
+			<if test="position != null">
+				position,
 			</if>
 			<if test="status != null">
 				status,
@@ -153,8 +153,8 @@
 			<if test="loginPassword != null">
 				#{loginPassword,jdbcType=VARCHAR},
 			</if>
-			<if test="role != null">
-				#{role,jdbcType=INTEGER},
+			<if test="position != null">
+				#{position,jdbcType=INTEGER},
 			</if>
 			<if test="status != null">
 				#{status,jdbcType=INTEGER},
@@ -215,8 +215,8 @@
 				loginPassword =
 				#{loginPassword,jdbcType=VARCHAR},
 			</if>
-			<if test="role != null">
-				role = #{role,jdbcType=INTEGER},
+			<if test="position != null">
+				position = #{position,jdbcType=INTEGER},
 			</if>
 			<if test="status != null">
 				status = #{status,jdbcType=INTEGER},
@@ -274,7 +274,7 @@
 		#{loginMail,jdbcType=VARCHAR},
 		loginPassword =
 		#{loginPassword,jdbcType=VARCHAR},
-		role = #{role,jdbcType=INTEGER},
+		position = #{position,jdbcType=INTEGER},
 		status = #{status,jdbcType=INTEGER},
 		gender =
 		#{gender,jdbcType=INTEGER},
@@ -315,8 +315,8 @@
 		<include refid="Base_Column_List" />
 		from User
 		<where>
-			<if test="role != null">
-				and role = #{role,jdbcType=INTEGER}
+			<if test="position != null">
+				and position = #{position,jdbcType=INTEGER}
 			</if>
 			<if test="department != null">
 				and department = #{department,jdbcType=INTEGER}

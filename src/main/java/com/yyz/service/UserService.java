@@ -51,11 +51,11 @@ public interface UserService {
 	 * @param size
 	 * @param beginIndex
 	 * @param department
-	 * @param role
+	 * @param position
 	 *
 	 * @return
 	 */
-	List<UserDto> findByConditionAndPage(Integer role, Integer department, int beginIndex, int size);
+	List<UserDto> findByConditionAndPage(Integer position, Integer department, int beginIndex, int size);
 
 	/**
 	 * 查找当前最大的loginId

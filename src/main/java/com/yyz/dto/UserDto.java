@@ -100,12 +100,12 @@ public class UserDto implements Serializable {
 		this.loginPassword = loginPassword;
 	}
 
-	public String getRole() {
-		return role;
+	public String getPosition() {
+		return position;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 	public Integer getStatus() {
@@ -164,9 +164,9 @@ public class UserDto implements Serializable {
 	private String	loginPassword;
 
 	/**
-	 * 用户角色
+	 * 用户职位
 	 */
-	private String	role;
+	private String	position;
 
 	/**
 	 * 状态:默认0

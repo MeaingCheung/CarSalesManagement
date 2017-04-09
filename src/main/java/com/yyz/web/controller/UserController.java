@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,8 +26,9 @@ import com.yyz.entity.User;
 import com.yyz.enumerate.Department;
 import com.yyz.enumerate.Gender;
 import com.yyz.enumerate.SessionKey;
-import com.yyz.enumerate.UserRole;
+import com.yyz.enumerate.UserPosition;
 import com.yyz.service.UserService;
+import com.yyz.util.ValidateCodeGenerator;
 import com.yyz.util.VerificationUtil;
 
 /**
@@ -75,8 +76,8 @@ public class UserController {
 		}
 		User user = userService.findByPrimaryKey(Long.valueOf(id));
 		User loginUser = (User) attribute;
-		UserRole role = UserRole.getByValue(loginUser.getRole());
-		if (!UserRole.ADMIN.equals(role) && !user.getId().equals(loginUser.getId())) {
+		UserPosition role = UserPosition.getByValue(loginUser.getPosition());
+		if (!UserPosition.MANAGER.equals(role) && !user.getId().equals(loginUser.getId())) {
 			return commonResultObject.buildErrorResult("无权限！");
 		}
 		String oldpassword = request.getParameter("oldpassword");
@@ -125,18 +126,18 @@ public class UserController {
 			size = Integer.valueOf(pageSize);
 		}
 		User loginUser = (User) attribute;
-		UserRole userRole = UserRole.getByValue(loginUser.getRole());
-		String roleStr = request.getParameter("role");
-		Integer role = null;
-		if (NumberUtils.isNumber(roleStr)) {
-			role = Integer.valueOf(roleStr);
+		UserPosition userRole = UserPosition.getByValue(loginUser.getPosition());
+		String positionStr = request.getParameter("position");
+		Integer position = null;
+		if (NumberUtils.isNumber(positionStr)) {
+			position = Integer.valueOf(positionStr);
 		}
 		String departmentStr = request.getParameter("department");
 		Integer department = null;
 		if (NumberUtils.isNumber(departmentStr)) {
 			department = Integer.valueOf(departmentStr);
 		}
-		List<UserDto> userList = userService.findByConditionAndPage(role, department, beginIndex, size);
+		List<UserDto> userList = userService.findByConditionAndPage(position, department, beginIndex, size);
 		commonResultObject.setPageCurrent(beginIndex);
 		commonResultObject.setList(userList);
 
@@ -178,7 +179,7 @@ public class UserController {
 		String loginName = request.getParameter("loginName");
 		String loginPhone = request.getParameter("loginPhone");
 		String loginMail = request.getParameter("loginMail");
-		String roleStr = request.getParameter("role");
+		String positionStr = request.getParameter("position");
 		String departmentStr = request.getParameter("department");
 		String ageStr = request.getParameter("age");
 		String userRemark = request.getParameter("userRemark");
@@ -198,10 +199,10 @@ public class UserController {
 				return commonResultObject.buildErrorResult("请输入正确的邮箱");
 			}
 		}
-		if (StringUtils.isNotBlank(roleStr)) {
-			UserRole role = UserRole.getByValue(Integer.valueOf(roleStr));
+		if (StringUtils.isNotBlank(positionStr)) {
+			UserPosition role = UserPosition.getByValue(Integer.valueOf(positionStr));
 			if (role == null) {
-				logger.info("编辑失败，参数错误，role=" + roleStr);
+				logger.info("编辑失败，参数错误，role=" + positionStr);
 				return commonResultObject.buildErrorResult("编辑失败！");
 			}
 		}
@@ -222,7 +223,7 @@ public class UserController {
 			Gender gender = Gender.getByValue(Integer.valueOf(genderStr));
 			if (gender == null) {
 				logger.info("编辑失败，性别参数错误，gender=" + genderStr);
-				return commonResultObject.buildErrorResult("年龄非法！");
+				return commonResultObject.buildErrorResult("性别非法！");
 			}
 		}
 		User userForUpdate = new User();
@@ -232,7 +233,7 @@ public class UserController {
 		userForUpdate.setLoginMail(loginMail);
 		userForUpdate.setLoginName(loginName);
 		userForUpdate.setLoginPhone(loginPhone);
-		userForUpdate.setRole(Integer.valueOf(roleStr));
+		userForUpdate.setPosition(Integer.valueOf(positionStr));
 		userForUpdate.setUserRemark(userRemark);
 		long now = System.currentTimeMillis();
 		userForUpdate.setUpdateTime(now);
@@ -270,4 +271,22 @@ public class UserController {
 
 		return commonResultObject;
 	}
+
+	@RequestMapping(value = "/imageServlet", method = { RequestMethod.POST, RequestMethod.GET })
+	public void imageServlet(HttpServletRequest request, HttpServletResponse response) {
+		// 设置相应类型,告诉浏览器输出的内容为图片
+		response.setContentType("image/jpeg");
+		// 设置响应头信息，告诉浏览器不要缓存此内容
+		response.setHeader("Pragma", "No-cache");
+		response.setHeader("Cache-Control", "no-cache");
+		response.setDateHeader("Expire", 0);
+		ValidateCodeGenerator randomValidateCode = new ValidateCodeGenerator();
+		try {
+			// 输出图片方法
+			randomValidateCode.getPicRandcode(request, response);
+		} catch (Exception e) {
+			logger.error(e.toString());
+		}
+	}
+
 }

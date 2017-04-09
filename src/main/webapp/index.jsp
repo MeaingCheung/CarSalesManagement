@@ -172,11 +172,13 @@ function bjui_index_exchange() {
 				<ul class="nav navbar-nav navbar-right">
 					<li class="datetime"><a><span id="bjui-date">0000/00/00</span>
 							<span id="bjui-clock">00:00:00</span></a></li>
-					<li><a href="#">账号：${user.loginId}</a></li>
+					<li><a href="#">工号：${user.loginId}</a></li>
 					<li><a href="#">登录名：${user.loginName}</a></li>
 					<li><a href="#">角色：<c:choose>
-								<c:when test="${user.role==0}">管理员</c:when>
-								<c:when test="${user.role==1}">普通用户</c:when>
+								<c:when test="${user.position==0}">经理</c:when>
+								<c:when test="${user.position==1}">销售员</c:when>
+								<c:when test="${user.position==2}">会计</c:when>
+								<c:when test="${user.position==3}">仓库员</c:when>
 								<c:otherwise>未知</c:otherwise>
 							</c:choose></a></li>
 					<li><a href="/changepasswordUi" data-toggle="dialog"
@@ -239,15 +241,16 @@ function bjui_index_exchange() {
 			<nav class="collapse navbar-collapse" id="bjui-navbar-collapse">
 				<ul class="nav navbar-nav navbar-right" id="bjui-hnav-navbar">
 					<li class="active"><a href="/json/menu-form.json"
-						data-toggle="sidenav" data-id-key="targetid">系统管理</a></li>
-					<li><a href="/json/menu-base.json" data-toggle="sidenav"
-						data-id-key="targetid">基础组件</a></li>
-					<li><a href="/json/menu-datagrid.json" data-toggle="sidenav"
-						data-id-key="targetid">数据表格(Datagrid)</a></li>
+						data-toggle="sidenav" data-id-key="targetid">信息管理</a></li>
 					<li><a href="javascript:;" data-toggle="sidenav"
 						data-tree="true" data-tree-options="{onClick:MainMenuClick}"
-						data-id-key="targetid">待续……</a> <script class="items"></script></li>
-					<li><a href="1.2" target="_blank">旧版DEMO</a></li>
+						data-id-key="targetid">销售管理</a> <script class="items"></script></li>
+					<li><a href="javascript:;" data-toggle="sidenav"
+						data-tree="true" data-tree-options="{onClick:MainMenuClick}"
+						data-id-key="targetid">库存管理</a> <script class="items"></script></li>
+					<li><a href="javascript:;" data-toggle="sidenav"
+						data-tree="true" data-tree-options="{onClick:MainMenuClick}"
+						data-id-key="targetid">售后管理</a> <script class="items"></script></li>
 				</ul>
 			</nav>
 		</div>

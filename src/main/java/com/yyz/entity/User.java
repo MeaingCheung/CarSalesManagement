@@ -44,9 +44,9 @@ public class User implements Serializable {
 	private String				loginPassword;
 
 	/**
-	 * 用户角色
+	 * 用户职位
 	 */
-	private Integer				role;
+	private Integer				position;
 
 	/**
 	 * 状态:默认0
@@ -197,20 +197,6 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * 获取用户角色
-	 */
-	public Integer getRole() {
-		return role;
-	}
-
-	/**
-	 * 设置用户角色
-	 */
-	public void setRole(Integer role) {
-		this.role = role;
-	}
-
-	/**
 	 * 获取状态:默认0
 	 */
 	public Integer getStatus() {
@@ -337,4 +323,13 @@ public class User implements Serializable {
 	public void setGender(Integer gender) {
 		this.gender = gender;
 	}
+
+	public Integer getPosition() {
+		return position;
+	}
+
+	public void setPosition(Integer position) {
+		this.position = position;
+	}
+
 }

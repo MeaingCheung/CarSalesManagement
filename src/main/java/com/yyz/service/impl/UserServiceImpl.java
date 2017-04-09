@@ -1,15 +1,5 @@
 package com.yyz.service.impl;
 
-import com.yyz.dao.UserMapper;
-import com.yyz.dto.UserDto;
-import com.yyz.entity.User;
-import com.yyz.enumerate.Department;
-import com.yyz.enumerate.Gender;
-import com.yyz.enumerate.UserRole;
-import com.yyz.service.UserService;
-import com.yyz.util.DateUtil;
-import com.yyz.web.controller.BaseController;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +8,15 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import com.yyz.dao.UserMapper;
+import com.yyz.dto.UserDto;
+import com.yyz.entity.User;
+import com.yyz.enumerate.Department;
+import com.yyz.enumerate.Gender;
+import com.yyz.enumerate.UserPosition;
+import com.yyz.service.UserService;
+import com.yyz.util.DateUtil;
 
 /**
  * 业务服务层实现 - 表: user
@@ -72,10 +71,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserDto> findByConditionAndPage(Integer role, Integer department, int beginIndex, int size) {
+	public List<UserDto> findByConditionAndPage(Integer position, Integer department, int beginIndex, int size) {
 		try {
 			List<UserDto> userDtoList = new ArrayList<UserDto>();
-			List<User> userList = userMapper.selectByConditionAndPage(role, department, beginIndex, size);
+			List<User> userList = userMapper.selectByConditionAndPage(position, department, beginIndex, size);
 			for (User user : userList) {
 				UserDto userDto = new UserDto();
 				userDto.setId(user.getId());
@@ -87,8 +86,8 @@ public class UserServiceImpl implements UserService {
 				userDto.setLoginMail(user.getLoginMail());
 				userDto.setLoginName(user.getLoginName());
 				userDto.setLoginPhone(user.getLoginPhone());
-				UserRole userRole = UserRole.getByValue(user.getRole());
-				userDto.setRole(userRole == null ? "" : userRole.getComment());
+				UserPosition userRole = UserPosition.getByValue(user.getPosition());
+				userDto.setPosition(userRole == null ? "" : userRole.getComment());
 				userDto.setGender(Gender.getByValue(user.getGender()).getComment());
 				userDto.setUpdateTime(DateUtil.convertTimeStampToString(user.getUpdateTime()));
 				userDto.setUserRemark(user.getUserRemark());

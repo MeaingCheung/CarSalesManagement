@@ -1,0 +1,65 @@
+<div class="bjui-pageHeader"
+	style="background-color: #fefefe; border-bottom: none;">
+	<form data-toggle="ajaxsearch"
+		data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-test-filter')}">
+		<fieldset>
+			<legend style="font-weight: normal;">筛选信息：</legend>
+			<div style="margin: 0; padding: 1px 5px 5px;">
+				<span>录入人：</span> <input type="text" name="createUserLoginId"
+					class="form-control" size="15">&nbsp;&nbsp;&nbsp;&nbsp; <span>类型：</span> <select name="type"
+					data-toggle="selectpicker">
+					<option value="">全部</option>
+					<option value="0">普通轿车</option>
+					<option value="1">SUV</option>
+					<option value="2">跑车</option>
+				</select> &nbsp;&nbsp;&nbsp;&nbsp;
+				<div class="btn-group">
+					<button type="submit" class="btn-green" data-icon="search">搜索</button>
+					<!-- 
+                
+                <button type="reset" class="btn-orange" data-icon="times">重置</button>
+                 -->
+				</div>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+		</fieldset>
+	</form>
+</div>
+<div class="bjui-pageContent">
+	<table class="table table-bordered" id="datagrid-test-filter"
+		data-toggle="datagrid"
+		data-options="{
+        height: '100%',
+        gridTitle : '车辆信息管理',
+        showToolbar: true,
+        toolbarItem: 'add,edit,del,|',
+        dataUrl: '/getCarInfo',
+        dataType: 'json',
+        jsonPrefix: 'car',
+        editMode: {dialog:{width:'800',height:500,title:'编辑车辆信息',mask:true}},
+        editUrl: '/addOrupdateCarUi?id={id}',
+        paging: {pageSize:10},
+        showCheckboxcol: true,
+        linenumberAll: true,
+        filterThead:false,
+        showCheckboxcol:false
+    }">
+		<thead>
+			<tr>
+				<th data-options="{name:'serialNumber',align:'center'}">编号
+				
+				<th data-options="{name:'name',align:'center'}">名称</th>
+				<th data-options="{name:'color',align:'center'}">颜色</th>
+				<th data-options="{name:'type',align:'center'}">类型</th>
+				<th data-options="{name:'manufacturerName',align:'center'}">厂商</th>
+				<th data-options="{name:'productAddress',align:'center'}">产地</th>
+				<th data-options="{name:'createUserLoginId',align:'center'}">录入人</th>
+				<th
+					data-options="{name:'createTime',align:'center',type:'date',pattern:'yyyy-MM-dd HH:mm:ss',quickfilter:false}">创建时间</th>
+				<th
+					data-options="{name:'updateTime',align:'center',type:'date',pattern:'yyyy-MM-dd HH:mm:ss',quickfilter:false}">更新日期</th>
+				<th data-options="{name:'comment',align:'center'}">备注</th>
+			</tr>
+		</thead>
+	</table>
+</div>
