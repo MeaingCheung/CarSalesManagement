@@ -174,6 +174,14 @@ function bjui_index_exchange() {
 							<span id="bjui-clock">00:00:00</span></a></li>
 					<li><a href="#">工号：${user.loginId}</a></li>
 					<li><a href="#">登录名：${user.loginName}</a></li>
+					<li><a href="#">部门：<c:choose>
+								<c:when test="${user.department==0}">人事部</c:when>
+								<c:when test="${user.department==1}">采购部</c:when>
+								<c:when test="${user.department==2}">销售部</c:when>
+								<c:when test="${user.department==3}">采购部</c:when>
+								<c:when test="${user.department==4}">售后服务部</c:when>
+								<c:otherwise>未知</c:otherwise>
+							</c:choose></a></li>
 					<li><a href="#">角色：<c:choose>
 								<c:when test="${user.position==0}">经理</c:when>
 								<c:when test="${user.position==1}">销售员</c:when>
