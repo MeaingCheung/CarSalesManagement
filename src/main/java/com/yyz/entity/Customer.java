@@ -1,6 +1,3 @@
-/**
- * Copyright (c) 2015, 杭州转乾网络. All rights reserved.
- */
 package com.yyz.entity;
 
 import java.io.Serializable;

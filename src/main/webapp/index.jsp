@@ -242,14 +242,15 @@ function bjui_index_exchange() {
 				<ul class="nav navbar-nav navbar-right" id="bjui-hnav-navbar">
 					<li class="active"><a href="/json/menu-form.json"
 						data-toggle="sidenav" data-id-key="targetid">信息管理</a></li>
-					<li><a href="/json/menu-base.json" data-toggle="sidenav"
-						data-id-key="targetid">基础组件</a></li>
-					<li><a href="/json/menu-datagrid.json" data-toggle="sidenav"
-						data-id-key="targetid">数据表格(Datagrid)</a></li>
 					<li><a href="javascript:;" data-toggle="sidenav"
 						data-tree="true" data-tree-options="{onClick:MainMenuClick}"
-						data-id-key="targetid">待续……</a> <script class="items"></script></li>
-					<li><a href="1.2" target="_blank">旧版DEMO</a></li>
+						data-id-key="targetid">销售管理</a> <script class="items"></script></li>
+					<li><a href="javascript:;" data-toggle="sidenav"
+						data-tree="true" data-tree-options="{onClick:MainMenuClick}"
+						data-id-key="targetid">库存管理</a> <script class="items"></script></li>
+					<li><a href="javascript:;" data-toggle="sidenav"
+						data-tree="true" data-tree-options="{onClick:MainMenuClick}"
+						data-id-key="targetid">售后管理</a> <script class="items"></script></li>
 				</ul>
 			</nav>
 		</div>

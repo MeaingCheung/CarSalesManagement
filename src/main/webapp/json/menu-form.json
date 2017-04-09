@@ -3,6 +3,6 @@
         {"id":"base-button", "name":"员工信息", "target":"navtab", "url":"html/datagrid/employee.html"},
         {"id":"base-checkbox", "name":"客户信息", "target":"navtab", "url":"html/datagrid/customer.html"},
         {"id":"base-select", "name":"厂商信息", "target":"navtab", "url":"html/datagrid/manufacturer.html"},
-        {"id":"base-input", "name":"车辆信息", "target":"navtab", "url":"html/form/input.html"}
+        {"id":"base-input", "name":"车辆信息", "target":"navtab", "url":"html/datagrid/car.html"}
     ]}
 ]

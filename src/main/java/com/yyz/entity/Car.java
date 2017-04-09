@@ -3,11 +3,11 @@ package com.yyz.entity;
 import java.io.Serializable;
 
 /**
- * 实体类 - 表：manufacturer
+ * 实体类 - 表：car
  * 
- * @since 2017-04-07 22:01:28
+ * @since 2017-04-09 12:36:31
  */
-public class Manufacturer implements Serializable {
+public class Car implements Serializable {
 	/**
 	 * 自增主键
 	 */
@@ -19,9 +19,14 @@ public class Manufacturer implements Serializable {
 	private Long				createUserLoginId;
 
 	/**
-	 * 编号
+	 * 厂商id
 	 */
-	private Long				serialNumber;
+	private Long				manufacturerId;
+
+	/**
+	 * 厂商名称
+	 */
+	private String				manufacturerName;
 
 	/**
 	 * 名称
@@ -29,24 +34,29 @@ public class Manufacturer implements Serializable {
 	private String				name;
 
 	/**
-	 * 地址
+	 * 颜色
 	 */
-	private String				address;
+	private String				color;
 
 	/**
-	 * 联系电话
+	 * 产地
 	 */
-	private String				contactNumber;
+	private String				productAddress;
 
 	/**
-	 * 联系邮箱
+	 * 类型(suv,普通轿车，跑车等)
 	 */
-	private String				contactEmail;
+	private Integer				type;
 
 	/**
-	 * 官网地址
+	 * 备注
 	 */
-	private String				webSite;
+	private String				comment;
+
+	/**
+	 * 编号
+	 */
+	private String				serialNumber;
 
 	/**
 	 * 创建时间
@@ -76,7 +86,7 @@ public class Manufacturer implements Serializable {
 	/**
 	 * 备用字段2
 	 */
-	private Long				reserve2;
+	private String				reserve2;
 
 	private static final long	serialVersionUID	= 1L;
 
@@ -109,17 +119,17 @@ public class Manufacturer implements Serializable {
 	}
 
 	/**
-	 * 获取编号
+	 * 获取厂商id
 	 */
-	public Long getSerialNumber() {
-		return serialNumber;
+	public Long getManufacturerId() {
+		return manufacturerId;
 	}
 
 	/**
-	 * 设置编号
+	 * 设置厂商id
 	 */
-	public void setSerialNumber(Long serialNumber) {
-		this.serialNumber = serialNumber;
+	public void setManufacturerId(Long manufacturerId) {
+		this.manufacturerId = manufacturerId;
 	}
 
 	/**
@@ -137,59 +147,73 @@ public class Manufacturer implements Serializable {
 	}
 
 	/**
-	 * 获取地址
+	 * 获取颜色
 	 */
-	public String getAddress() {
-		return address;
+	public String getColor() {
+		return color;
 	}
 
 	/**
-	 * 设置地址
+	 * 设置颜色
 	 */
-	public void setAddress(String address) {
-		this.address = address == null ? null : address.trim();
+	public void setColor(String color) {
+		this.color = color == null ? null : color.trim();
 	}
 
 	/**
-	 * 获取联系电话
+	 * 获取产地
 	 */
-	public String getContactNumber() {
-		return contactNumber;
+	public String getProductAddress() {
+		return productAddress;
 	}
 
 	/**
-	 * 设置联系电话
+	 * 设置产地
 	 */
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber == null ? null : contactNumber.trim();
+	public void setProductAddress(String productAddress) {
+		this.productAddress = productAddress == null ? null : productAddress.trim();
 	}
 
 	/**
-	 * 获取联系邮箱
+	 * 获取类型(suv,普通轿车，跑车等)
 	 */
-	public String getContactEmail() {
-		return contactEmail;
+	public Integer getType() {
+		return type;
 	}
 
 	/**
-	 * 设置联系邮箱
+	 * 设置类型(suv,普通轿车，跑车等)
 	 */
-	public void setContactEmail(String contactEmail) {
-		this.contactEmail = contactEmail == null ? null : contactEmail.trim();
+	public void setType(Integer type) {
+		this.type = type;
 	}
 
 	/**
-	 * 获取官网地址
+	 * 获取备注
 	 */
-	public String getWebSite() {
-		return webSite;
+	public String getComment() {
+		return comment;
 	}
 
 	/**
-	 * 设置官网地址
+	 * 设置备注
 	 */
-	public void setWebSite(String webSite) {
-		this.webSite = webSite == null ? null : webSite.trim();
+	public void setComment(String comment) {
+		this.comment = comment == null ? null : comment.trim();
+	}
+
+	/**
+	 * 获取编号
+	 */
+	public String getSerialNumber() {
+		return serialNumber;
+	}
+
+	/**
+	 * 设置编号
+	 */
+	public void setSerialNumber(String serialNumber) {
+		this.serialNumber = serialNumber == null ? null : serialNumber.trim();
 	}
 
 	/**
@@ -265,14 +289,23 @@ public class Manufacturer implements Serializable {
 	/**
 	 * 获取备用字段2
 	 */
-	public Long getReserve2() {
+	public String getReserve2() {
 		return reserve2;
 	}
 
 	/**
 	 * 设置备用字段2
 	 */
-	public void setReserve2(Long reserve2) {
-		this.reserve2 = reserve2;
+	public void setReserve2(String reserve2) {
+		this.reserve2 = reserve2 == null ? null : reserve2.trim();
 	}
+
+	public String getManufacturerName() {
+		return manufacturerName;
+	}
+
+	public void setManufacturerName(String manufacturerName) {
+		this.manufacturerName = manufacturerName;
+	}
+	
 }

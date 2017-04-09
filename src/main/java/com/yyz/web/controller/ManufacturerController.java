@@ -19,9 +19,7 @@ import com.yyz.commons.CommonResultObject;
 import com.yyz.dto.ManufacturerDto;
 import com.yyz.entity.Manufacturer;
 import com.yyz.entity.User;
-import com.yyz.service.CustomerService;
 import com.yyz.service.ManufacturerService;
-import com.yyz.service.UserService;
 import com.yyz.util.VerificationUtil;
 
 /**
@@ -33,10 +31,6 @@ import com.yyz.util.VerificationUtil;
 @Controller
 public class ManufacturerController extends BaseController {
 	private final static Logger	logger	= LoggerFactory.getLogger(ManufacturerController.class);
-	@Autowired
-	private UserService			userService;
-	@Autowired
-	private CustomerService		customerService;
 	@Autowired
 	private ManufacturerService	manufacturerService;
 
@@ -74,7 +68,7 @@ public class ManufacturerController extends BaseController {
 	}
 
 	@RequestMapping(value = "/addOrupdateManufacturerUi", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addOrupdateCustomerUi(HttpServletRequest request, ModelMap modelMap) {
+	public String addOrupdateManufacturerUi(HttpServletRequest request, ModelMap modelMap) {
 		String id = request.getParameter("id");
 		if (NumberUtils.isNumber(id)) {
 			Manufacturer manufacturer = manufacturerService.findByPrimaryKey(Long.valueOf(id));
@@ -105,14 +99,14 @@ public class ManufacturerController extends BaseController {
 			} else {
 				Manufacturer manufacturer = manufacturerService.findByUniqueKey(Long.valueOf(serialNumber));
 				if (manufacturer != null) {
-					logger.error("厂商编号已存在,identifierNumber=" + serialNumber);
+					logger.error("厂商编号已存在,serialNumber=" + serialNumber);
 					return commonResultObject.buildErrorResult("厂商编号已存在");
 				}
 			}
 		}
 
 		if (StringUtils.isBlank(name)) {
-			return commonResultObject.buildErrorResult("请输入客户姓名");
+			return commonResultObject.buildErrorResult("请输入厂商名称");
 		}
 
 		if (StringUtils.isNotBlank(contactEmail)) {
