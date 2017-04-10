@@ -22,7 +22,7 @@
 			</layout>
 		</encoder>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>/data/logs/yyz/yyz%d{yyyy-MM-dd}_%i.log
+			<fileNamePattern>../logs/yyz%d{yyyy-MM-dd}_%i.log
 			</fileNamePattern>
 			<maxHistory>30</maxHistory>
 			<timeBasedFileNamingAndTriggeringPolicy
