@@ -37,7 +37,7 @@
 			<label class="row-label">手机号：</label>
 			<div class="row-input">
 				<input type="text" name="phoneNumber"
-					value="${customer.phoneNumber}" data-rule="number">
+					value="${customer.phoneNumber}" data-rule="mobile">
 			</div>
 			<label class="row-label">邮箱：</label>
 			<div class="row-input">

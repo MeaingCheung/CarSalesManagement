@@ -248,14 +248,13 @@ function bjui_index_exchange() {
 			</div>
 			<nav class="collapse navbar-collapse" id="bjui-navbar-collapse">
 				<ul class="nav navbar-nav navbar-right" id="bjui-hnav-navbar">
-					<li class="active"><a href="/json/menu-form.json"
+					<li class="active"><a href="/json/information.json"
 						data-toggle="sidenav" data-id-key="targetid">信息管理</a></li>
+					<li><a href="/json/inventory.json" data-toggle="sidenav"
+						data-id-key="targetid">库存管理</a> <script class="items"></script></li>
 					<li><a href="javascript:;" data-toggle="sidenav"
 						data-tree="true" data-tree-options="{onClick:MainMenuClick}"
 						data-id-key="targetid">销售管理</a> <script class="items"></script></li>
-					<li><a href="javascript:;" data-toggle="sidenav"
-						data-tree="true" data-tree-options="{onClick:MainMenuClick}"
-						data-id-key="targetid">库存管理</a> <script class="items"></script></li>
 					<li><a href="javascript:;" data-toggle="sidenav"
 						data-tree="true" data-tree-options="{onClick:MainMenuClick}"
 						data-id-key="targetid">售后管理</a> <script class="items"></script></li>

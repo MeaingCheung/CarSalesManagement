@@ -5,14 +5,8 @@
 		<fieldset>
 			<legend style="font-weight: normal;">筛选信息：</legend>
 			<div style="margin: 0; padding: 1px 5px 5px;">
-				<span>操作人：</span> <input type="text" name="createUserLoginId"
-					class="form-control" size="15">&nbsp;&nbsp;&nbsp;&nbsp; <span>类型：</span>
-				<select name="type" data-toggle="selectpicker">
-					<option value="">全部</option>
-					<option value="0">普通轿车</option>
-					<option value="1">SUV</option>
-					<option value="2">跑车</option>
-				</select> &nbsp;&nbsp;&nbsp;&nbsp;
+				<span>车辆编号：</span> <input type="text" name="carSerialNumber"
+					class="form-control" size="15">&nbsp;&nbsp;&nbsp;&nbsp; 
 				<div class="btn-group">
 					<button type="submit" class="btn-green" data-icon="search">搜索</button>
 					<!-- 
@@ -32,12 +26,10 @@
         height: '100%',
         gridTitle : '车辆信息管理',
         showToolbar: true,
-        toolbarItem: 'add,edit,del,|',
-        dataUrl: '/getCarInfo',
+        dataUrl: '/getInventoryInfo',
         dataType: 'json',
         jsonPrefix: 'car',
         editMode: {dialog:{width:'600',height:300,title:'编辑车辆信息',mask:true}},
-        editUrl: '/addOrupdateCarUi?id={id}',
         paging: {pageSize:10},
         showCheckboxcol: true,
         linenumberAll: true,
@@ -47,13 +39,11 @@
     }">
 		<thead>
 			<tr>
-				<th data-options="{name:'serialNumber',align:'center'}">编号
-				<th data-options="{name:'name',align:'center'}">名称</th>
-				<th data-options="{name:'color',align:'center'}">颜色</th>
-				<th data-options="{name:'type',align:'center'}">类型</th>
+				<th data-options="{name:'carSerialNumber',align:'center'}">车辆编号
+				<th data-options="{name:'carName',align:'center'}">车辆名称</th>
+				<th data-options="{name:'amount',align:'center'}">库存数量</th>
+				<th data-options="{name:'costPrice',align:'center'}">进价(单位：元)</th>
 				<th data-options="{name:'manufacturerName',align:'center'}">厂商</th>
-				<th data-options="{name:'productAddress',align:'center'}">产地</th>
-				<th data-options="{name:'createUserLoginId',align:'center'}">操作人</th>
 				<th
 					data-options="{name:'createTime',align:'center',type:'date',pattern:'yyyy-MM-dd HH:mm:ss',quickfilter:false}">创建时间</th>
 				<th
@@ -68,7 +58,7 @@
 	function test(value){
 		var url="/addOrupdateInventoryUi?id="+value;
 		//alert(url);
-		var html = '<button type="button" class="btn-orange" data-toggle="dialog" data-options="{id:\'test_dialog2\', url:\''+url+'\',title:\'车辆入库\'}">入库</button>';
+		var html = '<button type="button" class="btn-orange" data-toggle="dialog" data-options="{id:\'test_dialog2\', url:\''+url+'\',title:\'车辆出库\'}">出库</button>';
 		//alert(html);
 		return html;
 	}

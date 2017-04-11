@@ -93,3 +93,38 @@ CREATE TABLE `Car` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_serialNumber` (`serialNumber`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='车辆信息表';
+10.新建库存表
+CREATE TABLE `Inventory` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `carSerialNumber` varchar(100) NOT NULL COMMENT '汽车编号',
+  `amount` bigint(20) NOT NULL DEFAULT '0' COMMENT '数量',
+  `costPrice` bigint(20) NOT NULL COMMENT '进价',
+  `comment` varchar(255) DEFAULT NULL COMMENT '备注',
+  `createTime` bigint(20) NOT NULL COMMENT '创建时间',
+  `updateTime` bigint(20) NOT NULL COMMENT '更新时间',
+  `deleteTime` bigint(20) DEFAULT NULL COMMENT '删除时间',
+  `reserve0` bigint(20) DEFAULT NULL COMMENT '备用字段0',
+  `reserve1` bigint(20) DEFAULT NULL COMMENT '备用字段1',
+  `reserve2` varchar(255) DEFAULT NULL COMMENT '备用字段2',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_carSerialNumber_costPrice` (`carSerialNumber`,`costPrice`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='库存表';
+11.新建库存记录表
+CREATE TABLE `InventoryRecord` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `type` int(11) NOT NULL COMMENT '类型(0-入库，1-出库)',
+  `inventoryId` bigint(20) NOT NULL COMMENT '库存',
+  `carSerialNumber` varchar(100) NOT NULL COMMENT '汽车编号',
+  `originalAmount` bigint(20) NOT NULL COMMENT '变更前数量',
+  `changeAmount` bigint(20) NOT NULL COMMENT '变更数量',
+  `operateUserLoginId` bigint(20) NOT NULL COMMENT '操作人登录id',
+  `changeInventoryTime` bigint(20) NOT NULL COMMENT '出入库时间',
+  `comment` varchar(255) DEFAULT NULL COMMENT '备注',
+  `createTime` bigint(20) NOT NULL COMMENT '创建时间',
+  `updateTime` bigint(20) NOT NULL COMMENT '更新时间',
+  `deleteTime` bigint(20) DEFAULT NULL COMMENT '删除时间',
+  `reserve0` bigint(20) DEFAULT NULL COMMENT '备用字段0',
+  `reserve1` bigint(20) DEFAULT NULL COMMENT '备用字段1',
+  `reserve2` varchar(255) DEFAULT NULL COMMENT '备用字段2',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='库存记录表';

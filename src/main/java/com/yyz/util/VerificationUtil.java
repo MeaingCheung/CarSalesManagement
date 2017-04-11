@@ -1,6 +1,5 @@
 package com.yyz.util;
 
-
 /**
  * 
  * @company 河南财经政法大学
@@ -53,9 +52,5 @@ public class VerificationUtil {
 			checkResult = false;
 		}
 		return checkResult;
-	}
-
-	public static void main(String[] args) {
-		System.out.println(checkAge("24"));
 	}
 }
