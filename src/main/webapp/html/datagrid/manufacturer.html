@@ -1,7 +1,7 @@
 <div class="bjui-pageHeader"
 	style="background-color: #fefefe; border-bottom: none;">
 	<form data-toggle="ajaxsearch"
-		data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-test-filter')}">
+		data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-manufacturer')}">
 		<fieldset>
 			<legend style="font-weight: normal;">筛选信息：</legend>
 			<div style="margin: 0; padding: 1px 5px 5px;">
@@ -20,7 +20,7 @@
 	</form>
 </div>
 <div class="bjui-pageContent">
-	<table class="table table-bordered" id="datagrid-test-filter"
+	<table class="table table-bordered" id="datagrid-manufacturer"
 		data-toggle="datagrid"
 		data-options="{
         height: '100%',
@@ -37,11 +37,11 @@
         linenumberAll: true,
         filterThead:false,
         showCheckboxcol:false,
-        editCallback:'refresh()',
+        afterSave:function($trs, datas){$('#datagrid-manufacturer').datagrid('refresh',true)}
     }">
 		<thead>
 			<tr>
-				<th data-options="{name:'name',align:'center'}">公司名称</th>
+				<th data-options="{name:'name',align:'center'}">厂商名称</th>
 				<th data-options="{name:'serialNumber',align:'center'}">编号</th>
 				<th data-options="{name:'contactNumber',align:'center'}">联系电话</th>
 				<th data-options="{name:'contactEmail',align:'center'}">联系邮箱</th>

@@ -35,7 +35,7 @@ public class CommonResultObject {
 	/**
 	 * 当前记录总的行数
 	 */
-	private int					totalRow;
+	private int					totalRow=11;
 	/**
 	 * 当前页
 	 */
@@ -53,9 +53,9 @@ public class CommonResultObject {
 	 */
 	public CommonResultObject buildAllResult(List<?> data) {
 		this.list = data;
-		if (data != null) {
+		/*if (data != null) {
 			this.totalRow = data.size();
-		}
+		}*/
 		return this;
 	}
 
@@ -118,9 +118,9 @@ public class CommonResultObject {
 	 */
 	public void setList(List<?> data) {
 		this.list = data;
-		if (data != null) {
-			this.totalRow = data.size();
-		}
+		// if (data != null) {
+		// this.totalRow = data.size()+1;
+		// }
 	}
 
 	/**

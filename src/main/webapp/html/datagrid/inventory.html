@@ -1,7 +1,7 @@
 <div class="bjui-pageHeader"
 	style="background-color: #fefefe; border-bottom: none;">
 	<form data-toggle="ajaxsearch"
-		data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-test-filter')}">
+		data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-inventory')}">
 		<fieldset>
 			<legend style="font-weight: normal;">筛选信息：</legend>
 			<div style="margin: 0; padding: 1px 5px 5px;">
@@ -20,11 +20,11 @@
 	</form>
 </div>
 <div class="bjui-pageContent">
-	<table class="table table-bordered" id="datagrid-test-filter"
+	<table class="table table-bordered" id="datagrid-inventory"
 		data-toggle="datagrid"
 		data-options="{
         height: '100%',
-        gridTitle : '车辆信息管理',
+        gridTitle : '库存信息',
         showToolbar: true,
         dataUrl: '/getInventoryInfo',
         dataType: 'json',
@@ -35,13 +35,15 @@
         linenumberAll: true,
         filterThead:false,
         showCheckboxcol:false,
-        editCallback:function(json){return json}
+        editCallback:function(json){return json},
+        showLinenumber:false
     }">
 		<thead>
 			<tr>
-				<th data-options="{name:'carSerialNumber',align:'center'}">车辆编号
+				<th data-options="{name:'id',align:'center'}">库存编号
 				<th data-options="{name:'carName',align:'center'}">车辆名称</th>
-				<th data-options="{name:'amount',align:'center'}">库存数量</th>
+				<th data-options="{name:'carSerialNumber',align:'center'}">车辆编号
+				<th data-options="{name:'amount',align:'center'}">库存数量(单位：辆)</th>
 				<th data-options="{name:'costPrice',align:'center'}">进价(单位：元)</th>
 				<th data-options="{name:'manufacturerName',align:'center'}">厂商</th>
 				<th

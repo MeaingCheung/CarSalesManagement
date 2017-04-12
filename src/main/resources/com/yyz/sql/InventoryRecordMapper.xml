@@ -38,7 +38,7 @@
 		parameterType="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
-		from Inventoryrecord
+		from InventoryRecord
 		where id = #{id,jdbcType=BIGINT}
 	</select>
 
@@ -48,7 +48,7 @@
 			order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
-		insert into Inventoryrecord (type, inventoryId, carSerialNumber,
+		insert into InventoryRecord (type, inventoryId, carSerialNumber,
 		originalAmount, changeAmount, operateUserLoginId,
 		changeInventoryTime,comment,
 		createTime, updateTime,
@@ -78,7 +78,7 @@
 			order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
-		insert into Inventoryrecord
+		insert into InventoryRecord
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="type != null">
 				type,
@@ -171,7 +171,7 @@
 
 	<!-- 按主键更新 - 仅更新给定实体类中非null的字段 -->
 	<update id="updateByPrimaryKeySelective" parameterType="com.yyz.entity.InventoryRecord">
-		update Inventoryrecord
+		update InventoryRecord
 		<set>
 			<if test="type != null">
 				type = #{type,jdbcType=INTEGER},
@@ -235,7 +235,7 @@
 	<!-- -->
 	<update id="updateByPrimaryKey" parameterType="com.yyz.entity.InventoryRecord">
 		update
-		Inventoryrecord
+		InventoryRecord
 		set type = #{type,jdbcType=INTEGER},
 		inventoryId =
 		#{inventoryId,jdbcType=BIGINT},
@@ -264,4 +264,23 @@
 		where id = #{id,jdbcType=BIGINT}
 	</update>
 
+	<!-- 根据条件进行查询 -->
+	<select id="selectByConditionAndPage" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from InventoryRecord
+		<where>
+			<if test="inventoryId != null">
+				and inventoryId =
+				#{inventoryId,jdbcType=BIGINT}
+			</if>
+			<if test="type != null">
+				and type =
+				#{type,jdbcType=INTEGER}
+			</if>
+			and deleteTime is null
+		</where>
+		order by id desc
+		limit #{beginIndex},#{size}
+	</select>
 </mapper>

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.yyz.commons.CommonResultObject;
 import com.yyz.dto.CarDto;
 import com.yyz.dto.InventoryDto;
+import com.yyz.dto.InventoryRecordDto;
 import com.yyz.entity.Car;
 import com.yyz.entity.Inventory;
 import com.yyz.entity.InventoryRecord;
@@ -61,8 +62,8 @@ public class CarController extends BaseController {
 		int beginIndex = 0;
 		int size = 10;
 		if (NumberUtils.isNumber(pageSize) && NumberUtils.isNumber(pageCurrent)) {
-			beginIndex = Integer.valueOf(pageCurrent) - 1;
 			size = Integer.valueOf(pageSize);
+			beginIndex = (Integer.valueOf(pageCurrent) - 1) * size;
 		}
 		String createUserLoginIdStr = request.getParameter("createUserLoginId");
 		Long createUserLoginId = null;
@@ -86,7 +87,7 @@ public class CarController extends BaseController {
 		}
 
 		List<CarDto> carDtoList = carService.findByConditionAndPage(createUserLoginId, type, beginIndex, size);
-		commonResultObject.setPageCurrent(beginIndex);
+		commonResultObject.setPageCurrent(Integer.valueOf(pageCurrent));
 		commonResultObject.setList(carDtoList);
 
 		return commonResultObject;
@@ -333,8 +334,8 @@ public class CarController extends BaseController {
 		int beginIndex = 0;
 		int size = 10;
 		if (NumberUtils.isNumber(pageSize) && NumberUtils.isNumber(pageCurrent)) {
-			beginIndex = Integer.valueOf(pageCurrent) - 1;
 			size = Integer.valueOf(pageSize);
+			beginIndex = (Integer.valueOf(pageCurrent) - 1) * size;
 		}
 		String carSerialNumber = request.getParameter("carSerialNumber");
 		if (StringUtils.isBlank(carSerialNumber)) {
@@ -342,10 +343,50 @@ public class CarController extends BaseController {
 		}
 		List<InventoryDto> inventoryDtoList = inventoryService
 				.findByConditionAndPage(carSerialNumber, beginIndex, size);
-		commonResultObject.setPageCurrent(beginIndex);
+		commonResultObject.setPageCurrent(Integer.valueOf(pageCurrent));
 		commonResultObject.setList(inventoryDtoList);
 
 		return commonResultObject;
 	}
 
+	@RequestMapping(value = "/getInventoryRecordInfo", method = { RequestMethod.GET, RequestMethod.POST })
+	@ResponseBody
+	public CommonResultObject getInventoryRecordInfo(HttpServletRequest request, String pageSize, String pageCurrent) {
+		CommonResultObject commonResultObject = new CommonResultObject();
+		User loginUser = getLoginUser(request);
+		if (loginUser == null) {
+			return commonResultObject.buildErrorResult("请先登录！");
+		}
+		int beginIndex = 0;
+		int size = 10;
+		if (NumberUtils.isNumber(pageSize) && NumberUtils.isNumber(pageCurrent)) {
+			size = Integer.valueOf(pageSize);
+			beginIndex = (Integer.valueOf(pageCurrent) - 1) * size;
+		}
+		String inventoryIdStr = request.getParameter("inventoryId");
+		Long inventoryId = null;
+		if (StringUtils.isNotBlank(inventoryIdStr)) {
+			if (NumberUtils.isDigits(inventoryIdStr)) {
+				inventoryId = Long.valueOf(inventoryIdStr);
+			} else {
+				return commonResultObject;
+			}
+		}
+		String typeStr = request.getParameter("type");
+		Integer type = null;
+		if (StringUtils.isNotBlank(typeStr)) {
+			if (NumberUtils.isDigits(typeStr)) {
+				type = Integer.valueOf(typeStr);
+			} else {
+				return commonResultObject;
+			}
+
+		}
+		List<InventoryRecordDto> inventoryRecordDtoList = inventoryRecordService.findByConditionAndPage(inventoryId,
+				type, beginIndex, size);
+		commonResultObject.setPageCurrent(Integer.valueOf(pageCurrent));
+		commonResultObject.setList(inventoryRecordDtoList);
+
+		return commonResultObject;
+	}
 }

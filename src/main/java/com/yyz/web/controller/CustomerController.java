@@ -49,8 +49,8 @@ public class CustomerController extends BaseController {
 		int beginIndex = 0;
 		int size = 10;
 		if (NumberUtils.isNumber(pageSize) && NumberUtils.isNumber(pageCurrent)) {
-			beginIndex = Integer.valueOf(pageCurrent) - 1;
 			size = Integer.valueOf(pageSize);
+			beginIndex = (Integer.valueOf(pageCurrent) - 1) * size;
 		}
 		String createUserLoginIdStr = request.getParameter("createUserLoginId");
 		Long createUserLoginId = null;
@@ -74,7 +74,7 @@ public class CustomerController extends BaseController {
 		}
 		List<CustomerDto> customerDtoList = customerService.findByConditionAndPage(createUserLoginId, gender,
 				beginIndex, size);
-		commonResultObject.setPageCurrent(beginIndex);
+		commonResultObject.setPageCurrent(Integer.valueOf(pageCurrent));
 		commonResultObject.setList(customerDtoList);
 
 		return commonResultObject;

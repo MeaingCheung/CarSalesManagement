@@ -1,6 +1,6 @@
 [
     {"name":"库存管理", "children":[
         {"id":"base-button", "name":"库存信息", "target":"navtab", "url":"html/datagrid/inventory.html"},
-        {"id":"base-checkbox", "name":"出入记录", "target":"navtab", "url":"html/datagrid/customer.html"}
+        {"id":"base-checkbox", "name":"出入记录", "target":"navtab", "url":"html/datagrid/inventoryRecord.html"}
     ]}
 ]

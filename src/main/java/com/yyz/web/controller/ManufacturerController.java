@@ -45,8 +45,8 @@ public class ManufacturerController extends BaseController {
 		int beginIndex = 0;
 		int size = 10;
 		if (NumberUtils.isNumber(pageSize) && NumberUtils.isNumber(pageCurrent)) {
-			beginIndex = Integer.valueOf(pageCurrent) - 1;
 			size = Integer.valueOf(pageSize);
+			beginIndex = (Integer.valueOf(pageCurrent) - 1) * size;
 		}
 		String createUserLoginIdStr = request.getParameter("createUserLoginId");
 		Long createUserLoginId = null;
@@ -61,7 +61,7 @@ public class ManufacturerController extends BaseController {
 
 		List<ManufacturerDto> manufacturerDtoList = manufacturerService.findByConditionAndPage(createUserLoginId,
 				beginIndex, size);
-		commonResultObject.setPageCurrent(beginIndex);
+		commonResultObject.setPageCurrent(Integer.valueOf(pageCurrent));
 		commonResultObject.setList(manufacturerDtoList);
 
 		return commonResultObject;

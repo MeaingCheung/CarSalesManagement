@@ -1,7 +1,7 @@
 <div class="bjui-pageHeader"
 	style="background-color: #fefefe; border-bottom: none;">
 	<form data-toggle="ajaxsearch"
-		data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-test-filter')}">
+		data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-employee')}">
 		<fieldset>
 			<legend style="font-weight: normal;">筛选信息：</legend>
 			<div style="margin: 0; padding: 1px 5px 5px;">
@@ -35,7 +35,7 @@
 	<span>新增用户的初始密码为123456</span>
 </div>
 <div class="bjui-pageContent">
-	<table class="table table-bordered" id="datagrid-test-filter"
+	<table class="table table-bordered" id="datagrid-employee"
 		data-toggle="datagrid"
 		data-options="{
         height: '100%',
@@ -51,7 +51,8 @@
         showCheckboxcol: true,
         linenumberAll: true,
         filterThead:false,
-        showCheckboxcol:false
+        showCheckboxcol:false,
+        afterSave:function($trs, datas){$('#datagrid-employee').datagrid('refresh',true)}
     }">
 		<thead>
 			<tr>

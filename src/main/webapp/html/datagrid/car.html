@@ -1,7 +1,7 @@
 <div class="bjui-pageHeader"
 	style="background-color: #fefefe; border-bottom: none;">
 	<form data-toggle="ajaxsearch"
-		data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-test-filter')}">
+		data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-car')}">
 		<fieldset>
 			<legend style="font-weight: normal;">筛选信息：</legend>
 			<div style="margin: 0; padding: 1px 5px 5px;">
@@ -26,7 +26,7 @@
 	</form>
 </div>
 <div class="bjui-pageContent">
-	<table class="table table-bordered" id="datagrid-test-filter"
+	<table class="table table-bordered" id="datagrid-car"
 		data-toggle="datagrid"
 		data-options="{
         height: '100%',
@@ -43,7 +43,7 @@
         linenumberAll: true,
         filterThead:false,
         showCheckboxcol:false,
-        editCallback:function(json){return json}
+        afterSave:function($trs, datas){$('#datagrid-car').datagrid('refresh',true)}
     }">
 		<thead>
 			<tr>
@@ -68,7 +68,7 @@
 	function test(value){
 		var url="/addOrupdateInventoryUi?id="+value;
 		//alert(url);
-		var html = '<button type="button" class="btn-orange" data-toggle="dialog" data-options="{id:\'test_dialog2\', url:\''+url+'\',title:\'车辆入库\'}">入库</button>';
+		var html = '<button type="button" class="btn-orange" data-toggle="dialog" data-options="{id:\'in_inventory_dialog\', url:\''+url+'\',title:\'车辆入库\',mask:true}">入库</button>';
 		//alert(html);
 		return html;
 	}

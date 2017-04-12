@@ -3,6 +3,7 @@ package com.yyz.service;
 import java.util.List;
 
 import com.yyz.dto.InventoryDto;
+import com.yyz.dto.InventoryRecordDto;
 import com.yyz.entity.InventoryRecord;
 
 /**
@@ -37,5 +38,16 @@ public interface InventoryRecordService {
 	 * @return
 	 */
 	int update(InventoryRecord entity);
+
+	/**
+	 * 根据条件分页查询
+	 *
+	 * @param inventoryId
+	 * @param type
+	 * @param beginIndex
+	 * @param size
+	 * @return
+	 */
+	List<InventoryRecordDto> findByConditionAndPage(Long inventoryId, Integer type, int beginIndex, int size);
 
 }

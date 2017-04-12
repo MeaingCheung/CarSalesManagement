@@ -1,0 +1,61 @@
+<div class="bjui-pageHeader"
+	style="background-color: #fefefe; border-bottom: none;">
+	<form data-toggle="ajaxsearch"
+		data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-test-filter')}">
+		<fieldset>
+			<legend style="font-weight: normal;">筛选信息：</legend>
+			<div style="margin: 0; padding: 1px 5px 5px;">
+				<span>库存编号：</span> <input type="text" name="inventoryId"
+					class="form-control" size="15">&nbsp;&nbsp;&nbsp;&nbsp; <span>变更类型：</span> <select name="type"
+					data-toggle="selectpicker">
+					<option value="">全部</option>
+					<option value="0">入库</option>
+					<option value="1">出库</option>
+				</select> &nbsp;&nbsp;&nbsp;&nbsp;
+				<div class="btn-group">
+					<button type="submit" class="btn-green" data-icon="search">搜索</button>
+					<!-- 
+                
+                <button type="reset" class="btn-orange" data-icon="times">重置</button>
+                 -->
+				</div>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+		</fieldset>
+	</form>
+</div>
+<div class="bjui-pageContent">
+	<table class="table table-bordered" id="datagrid-test-filter"
+		data-toggle="datagrid"
+		data-options="{
+        height: '100%',
+        gridTitle : '出入库记录',
+        showToolbar: true,
+        dataUrl: '/getInventoryRecordInfo',
+        dataType: 'json',
+        jsonPrefix: 'car',
+        editMode: {dialog:{width:'600',height:300,title:'编辑车辆信息',mask:true}},
+        paging: {pageSize:10,selectPageSize:'10'},
+        showCheckboxcol: true,
+        linenumberAll: true,
+        filterThead:false,
+        showCheckboxcol:false,
+        showLinenumber:false
+    }">
+		<thead>
+			<tr>
+				<th data-options="{name:'inventoryId',align:'center'}">库存编号
+				<th data-options="{name:'carSerialNumber',align:'center'}">车辆编号
+				<th data-options="{name:'carName',align:'center'}">车辆名称</th>
+				<th data-options="{name:'originalAmount',align:'center'}">原始数量(单位：辆)</th>
+				<th data-options="{name:'changeAmount',align:'center'}">变更数量(单位：辆)</th>
+				<th data-options="{name:'costPrice',align:'center'}">进价(单位：元)</th>
+				<th data-options="{name:'type',align:'center'}">操作类型</th>
+				<th data-options="{name:'operateUserLoginId',align:'center'}">操作人</th>
+				<th
+					data-options="{name:'changeInventoryTime',align:'center',type:'date',pattern:'yyyy-MM-dd HH:mm:ss',quickfilter:false}">变更时间</th>
+				<th data-options="{name:'comment',align:'center'}">备注</th>
+			</tr>
+		</thead>
+	</table>
+</div>

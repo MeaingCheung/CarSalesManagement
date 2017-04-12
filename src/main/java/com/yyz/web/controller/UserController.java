@@ -122,8 +122,8 @@ public class UserController {
 		int beginIndex = 0;
 		int size = 10;
 		if (NumberUtils.isNumber(pageSize) && NumberUtils.isNumber(pageCurrent)) {
-			beginIndex = Integer.valueOf(pageCurrent) - 1;
 			size = Integer.valueOf(pageSize);
+			beginIndex = (Integer.valueOf(pageCurrent) - 1) * size;
 		}
 		User loginUser = (User) attribute;
 		UserPosition userRole = UserPosition.getByValue(loginUser.getPosition());
@@ -138,7 +138,7 @@ public class UserController {
 			department = Integer.valueOf(departmentStr);
 		}
 		List<UserDto> userList = userService.findByConditionAndPage(position, department, beginIndex, size);
-		commonResultObject.setPageCurrent(beginIndex);
+		commonResultObject.setPageCurrent(Integer.valueOf(pageCurrent));
 		commonResultObject.setList(userList);
 
 		return commonResultObject;
